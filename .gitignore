@@ -1,0 +1,101 @@
+# ===============================
+# Node
+# ===============================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# ===============================
+# Expo
+# ===============================
+.expo/
+.expo-shared/
+dist/
+web-build/
+
+# Expo environment files
+.env
+.env.*
+!.env.example
+
+# ===============================
+# Metro / React Native
+# ===============================
+.metro-health-check*
+metro-cache/
+.haste/
+
+# ===============================
+# iOS
+# ===============================
+ios/build/
+ios/Pods/
+ios/DerivedData/
+*.xcworkspace
+*.xcuserdata
+*.xcuserstate
+*.xcodeproj/project.xcworkspace/
+*.xcodeproj/xcuserdata/
+
+# ===============================
+# Android
+# ===============================
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+*.keystore
+*.jks
+*.iml
+
+# ===============================
+# EAS
+# ===============================
+.eas/
+eas-build/
+credentials.json
+
+# ===============================
+# TypeScript
+# ===============================
+*.tsbuildinfo
+
+# ===============================
+# Logs
+# ===============================
+logs/
+*.log
+
+# ===============================
+# IDE
+# ===============================
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# ===============================
+# Coverage
+# ===============================
+coverage/
+
+# ===============================
+# Temporary files
+# ===============================
+*.tmp
+*.bak
+*.old
+
+
+# Blockchain / Keys
+*.pem
+*.key
+*.private
+*.secret
+wallet.json
+keystore.json
