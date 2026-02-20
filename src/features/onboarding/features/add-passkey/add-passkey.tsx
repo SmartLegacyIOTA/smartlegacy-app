@@ -6,57 +6,30 @@ import { SharedButton } from "@/src/components/shared/shared-button";
 import { FeatureCard } from "@/src/features/onboarding/features/components/feature-card";
 import { useAddPasskey } from "@/src/features/onboarding/features/add-passkey/hooks/use-add-passkey";
 import { IntroSection } from "@/src/components/intro-section";
-import * as Passkey from "react-native-passkeys";
-import * as Crypto from "expo-crypto";
-import { Buffer } from "buffer";
+import { RNPasskeyProvider } from "@/src/libs/rn-passkey/RNPasskeyProvider";
+import { ensureIotaPasskeySigner } from "@/src/libs/rn-passkey";
 
 const AddPasskey = () => {
   const { t } = useI18nService();
   const theme = useTheme();
   const { onCreatePasskey, loading } = useAddPasskey();
 
-  const b64url = (bytes: Uint8Array) =>
-    Buffer.from(bytes)
-      .toString("base64")
-      .replace(/\+/g, "-")
-      .replace(/\//g, "_")
-      .replace(/=+$/g, "");
-
-  async function generateChallenge() {
-    const bytes = Crypto.getRandomBytes(32);
-    const base64 = Buffer.from(bytes).toString("base64");
-    return base64.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
-  }
-
   const onTestPasskey = async () => {
-    const challenge = await generateChallenge();
-    const userId = await generateChallenge();
+    try {
+      const provider = new RNPasskeyProvider();
 
-    console.log("Testing rn-passkey functionality");
-    const credentiasl = await Passkey.create({
-      challenge,
-      rp: {
-        id: "qa-api.smartlegacy.tech", // IMPORTANTÍSIMO: tu dominio HTTPS (rpId)
-        name: "SmartLegacy",
-      },
-      user: {
-        id: userId, // base64url
-        name: "david", // username
-        displayName: "David (demo)",
-      },
-      pubKeyCredParams: [
-        { type: "public-key", alg: -7 }, // ES256
-        { type: "public-key", alg: -257 }, // RS256 (opcional)
-      ],
-      authenticatorSelection: {
-        residentKey: "preferred",
-        userVerification: "preferred",
-      },
-      attestation: "none",
-      timeout: 60000,
-    });
+      const signer = await ensureIotaPasskeySigner({
+        provider,
+        rpId: "qa-api.smartlegacy.tech",
+        userIdB64u: "dGVzdC11c2VyLWlk", // ideal: id real estable del usuario
+        username: "david",
+        displayName: "David",
+      });
 
-    console.log(credentiasl);
+      console.log("IOTA address:", signer.toIotaAddress());
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

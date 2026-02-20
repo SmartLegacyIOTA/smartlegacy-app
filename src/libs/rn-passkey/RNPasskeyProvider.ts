@@ -1,42 +1,43 @@
 import * as Passkeys from "react-native-passkeys";
 
 export class RNPasskeyProvider {
-  constructor(private rpId: string) {}
-
-  async create(): Promise<any> {
+  async create(args: {
+    rpId: string;
+    challengeB64u: string;
+    user: { idB64u: string; name: string; displayName: string };
+  }): Promise<any> {
     return await Passkeys.create({
-      challenge: new TextEncoder().encode("Create IOTA Passkey Wallet"),
-      rp: {
-        id: this.rpId, // IMPORTANTÍSIMO: tu dominio HTTPS (rpId)
-        name: "SmartLegacy",
-      },
+      challenge: args.challengeB64u, // 👈 STRING base64url
+      rp: { id: args.rpId, name: "SmartLegacy" },
       user: {
-        id: "test", // base64url
-        name: "david", // username
-        displayName: "David (demo)",
+        id: args.user.idB64u, // 👈 STRING base64url
+        name: args.user.name,
+        displayName: args.user.displayName,
       },
-      pubKeyCredParams: [
-        { type: "public-key", alg: -7 }, // ES256
-      ],
+      pubKeyCredParams: [{ type: "public-key", alg: -7 }],
       authenticatorSelection: {
         residentKey: "required",
         userVerification: "required",
       },
+      attestation: "none",
+      timeout: 60000,
     });
   }
 
-  async get(
-    challenge: Uint8Array,
-    allowCredentialIds?: Uint8Array[],
-  ): Promise<any> {
+  async get(args: {
+    rpId: string;
+    challengeB64u: string;
+    allowCredentialIdsB64u?: string[];
+  }): Promise<any> {
     return await Passkeys.get({
-      challenge,
-      rpId: this.rpId,
+      challenge: args.challengeB64u, // 👈 STRING base64url
+      rpId: args.rpId,
       userVerification: "required",
-      allowCredentials: allowCredentialIds?.map((id) => ({
-        id,
+      allowCredentials: args.allowCredentialIdsB64u?.map((id) => ({
+        id, // 👈 base64url
         type: "public-key",
       })),
+      timeout: 60000,
     });
   }
 }
