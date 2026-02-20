@@ -1,1 +1,1 @@
-export { default } from './inactivity-period';
+export { default } from "./inactivity-period";

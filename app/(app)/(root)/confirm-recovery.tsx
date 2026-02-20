@@ -1,5 +1,5 @@
-import ConfirmRecovery from '@/src/features/legacy-recovery/features/confirm-recovery/confirm-recovery';
+import ConfirmRecovery from "@/src/features/legacy-recovery/features/confirm-recovery/confirm-recovery";
 
 export default function ConfirmRecoveryScreen() {
-    return <ConfirmRecovery />;
+  return <ConfirmRecovery />;
 }

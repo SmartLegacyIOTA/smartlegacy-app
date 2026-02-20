@@ -1,1 +1,1 @@
-export { default } from './add-trusted-heir';
+export { default } from "./add-trusted-heir";

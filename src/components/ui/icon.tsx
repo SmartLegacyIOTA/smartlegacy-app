@@ -1,25 +1,27 @@
-import React, { ComponentProps } from 'react';
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-import { StyleProp, TextStyle } from 'react-native';
+import React, { ComponentProps } from "react";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import { StyleProp, TextStyle } from "react-native";
 
-export type MaterialIconName = ComponentProps<typeof MaterialIcons>['name'];
-export type MaterialCommunityIconName = ComponentProps<typeof MaterialCommunityIcons>['name'];
+export type MaterialIconName = ComponentProps<typeof MaterialIcons>["name"];
+export type MaterialCommunityIconName = ComponentProps<
+  typeof MaterialCommunityIcons
+>["name"];
 
 type IconBaseProps = {
-    size?: number;
-    color: string;
-    style?: StyleProp<TextStyle>;
+  size?: number;
+  color: string;
+  style?: StyleProp<TextStyle>;
 };
 
 type IconPropsWithMaterial = IconBaseProps & {
-    variant: 'material';
-    name: MaterialIconName;
+  variant: "material";
+  name: MaterialIconName;
 };
 
 type IconPropsWithMaterialCommunity = IconBaseProps & {
-    variant: 'material-community';
-    name: MaterialCommunityIconName;
+  variant: "material-community";
+  name: MaterialCommunityIconName;
 };
 
 export type IconProps = IconPropsWithMaterial | IconPropsWithMaterialCommunity;
@@ -36,23 +38,23 @@ export type IconProps = IconPropsWithMaterial | IconPropsWithMaterialCommunity;
  * <Icon variant="material" name="home" size={24} color="#000" />
  */
 export function Icon({ variant, name, size = 24, color, style }: IconProps) {
-    if (variant === 'material') {
-        return (
-            <MaterialIcons
-                name={name as MaterialIconName}
-                size={size}
-                color={color}
-                style={style}
-            />
-        );
-    }
-
+  if (variant === "material") {
     return (
-        <MaterialCommunityIcons
-            name={name as MaterialCommunityIconName}
-            size={size}
-            color={color}
-            style={style}
-        />
+      <MaterialIcons
+        name={name as MaterialIconName}
+        size={size}
+        color={color}
+        style={style}
+      />
     );
+  }
+
+  return (
+    <MaterialCommunityIcons
+      name={name as MaterialCommunityIconName}
+      size={size}
+      color={color}
+      style={style}
+    />
+  );
 }

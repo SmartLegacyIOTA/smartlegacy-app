@@ -1,5 +1,5 @@
-import Settings from '@/src/features/settings';
+import Settings from "@/src/features/settings";
 
 export default function SettingsScreen() {
-    return <Settings />;
+  return <Settings />;
 }

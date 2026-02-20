@@ -7,26 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1024B0C14F60BD6527B11C11 /* libPods-smartlegacyapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E580A32D99C2525FC87532A4 /* libPods-smartlegacyapp.a */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		1AB2FD29719FEA82FAE7183D /* libPods-smartlegacyapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 85349C0464CE60738BE5FE7A /* libPods-smartlegacyapp.a */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		8A0A9F97E9F00C3A2935082F /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0131228014DE45EAA57A8DD7 /* ExpoModulesProvider.swift */; };
-		9281770B364AE1B6C26AD664 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 525428761F687FB5E0AA1106 /* PrivacyInfo.xcprivacy */; };
+		93C78BF0C93A8D0C3B590593 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 716359B791FF3F79C32BD399 /* PrivacyInfo.xcprivacy */; };
+		97B06E1D53B9B4BF5DB0973F /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9479FF04D5C438C2ABFB931C /* ExpoModulesProvider.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0131228014DE45EAA57A8DD7 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-smartlegacyapp/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* smartlegacyapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = smartlegacyapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = smartlegacyapp/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = smartlegacyapp/Info.plist; sourceTree = "<group>"; };
-		1472C5A200A0CF3B23C18E3F /* Pods-smartlegacyapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-smartlegacyapp.debug.xcconfig"; path = "Target Support Files/Pods-smartlegacyapp/Pods-smartlegacyapp.debug.xcconfig"; sourceTree = "<group>"; };
-		525428761F687FB5E0AA1106 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = smartlegacyapp/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		85349C0464CE60738BE5FE7A /* libPods-smartlegacyapp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-smartlegacyapp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		280C95995373A0761DAC39BC /* Pods-smartlegacyapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-smartlegacyapp.release.xcconfig"; path = "Target Support Files/Pods-smartlegacyapp/Pods-smartlegacyapp.release.xcconfig"; sourceTree = "<group>"; };
+		305D73D9ABABBEF39E7D357F /* Pods-smartlegacyapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-smartlegacyapp.debug.xcconfig"; path = "Target Support Files/Pods-smartlegacyapp/Pods-smartlegacyapp.debug.xcconfig"; sourceTree = "<group>"; };
+		716359B791FF3F79C32BD399 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = smartlegacyapp/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		9479FF04D5C438C2ABFB931C /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-smartlegacyapp/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = smartlegacyapp/SplashScreen.storyboard; sourceTree = "<group>"; };
-		B64000C0F5A483AA295444DE /* Pods-smartlegacyapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-smartlegacyapp.release.xcconfig"; path = "Target Support Files/Pods-smartlegacyapp/Pods-smartlegacyapp.release.xcconfig"; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
+		E580A32D99C2525FC87532A4 /* libPods-smartlegacyapp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-smartlegacyapp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = smartlegacyapp/AppDelegate.swift; sourceTree = "<group>"; };
 		F11748442D0722820044C1D9 /* smartlegacyapp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "smartlegacyapp-Bridging-Header.h"; path = "smartlegacyapp/smartlegacyapp-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -37,13 +37,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1AB2FD29719FEA82FAE7183D /* libPods-smartlegacyapp.a in Frameworks */,
+				1024B0C14F60BD6527B11C11 /* libPods-smartlegacyapp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		010571C0E79EB622C922A80C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				305D73D9ABABBEF39E7D357F /* Pods-smartlegacyapp.debug.xcconfig */,
+				280C95995373A0761DAC39BC /* Pods-smartlegacyapp.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		13B07FAE1A68108700A75B9A /* smartlegacyapp */ = {
 			isa = PBXGroup;
 			children = (
@@ -53,7 +63,7 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				525428761F687FB5E0AA1106 /* PrivacyInfo.xcprivacy */,
+				716359B791FF3F79C32BD399 /* PrivacyInfo.xcprivacy */,
 			);
 			name = smartlegacyapp;
 			sourceTree = "<group>";
@@ -62,9 +72,25 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				85349C0464CE60738BE5FE7A /* libPods-smartlegacyapp.a */,
+				E580A32D99C2525FC87532A4 /* libPods-smartlegacyapp.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		44831DD3B06DFA5E61D3295B /* ExpoModulesProviders */ = {
+			isa = PBXGroup;
+			children = (
+				695340CFE469C238404DBF25 /* smartlegacyapp */,
+			);
+			name = ExpoModulesProviders;
+			sourceTree = "<group>";
+		};
+		695340CFE469C238404DBF25 /* smartlegacyapp */ = {
+			isa = PBXGroup;
+			children = (
+				9479FF04D5C438C2ABFB931C /* ExpoModulesProvider.swift */,
+			);
+			name = smartlegacyapp;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -81,8 +107,8 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				FF7378EC6803E5FDEA8819E6 /* Pods */,
-				DB97A124FD28AED9FF351676 /* ExpoModulesProviders */,
+				010571C0E79EB622C922A80C /* Pods */,
+				44831DD3B06DFA5E61D3295B /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -106,32 +132,6 @@
 			path = smartlegacyapp/Supporting;
 			sourceTree = "<group>";
 		};
-		D02CAD5BE4A3AFE4E1966776 /* smartlegacyapp */ = {
-			isa = PBXGroup;
-			children = (
-				0131228014DE45EAA57A8DD7 /* ExpoModulesProvider.swift */,
-			);
-			name = smartlegacyapp;
-			sourceTree = "<group>";
-		};
-		DB97A124FD28AED9FF351676 /* ExpoModulesProviders */ = {
-			isa = PBXGroup;
-			children = (
-				D02CAD5BE4A3AFE4E1966776 /* smartlegacyapp */,
-			);
-			name = ExpoModulesProviders;
-			sourceTree = "<group>";
-		};
-		FF7378EC6803E5FDEA8819E6 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				1472C5A200A0CF3B23C18E3F /* Pods-smartlegacyapp.debug.xcconfig */,
-				B64000C0F5A483AA295444DE /* Pods-smartlegacyapp.release.xcconfig */,
-			);
-			name = Pods;
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -140,13 +140,13 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "smartlegacyapp" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				8F43639045E6137AF7CBF9E9 /* [Expo] Configure project */,
+				6DC53AC61515A9B056CC9F6E /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				F8133799692AA22B64343893 /* [CP] Embed Pods Frameworks */,
+				BAC29FF32066F9D68E925269 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -196,7 +196,7 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				9281770B364AE1B6C26AD664 /* PrivacyInfo.xcprivacy in Resources */,
+				93C78BF0C93A8D0C3B590593 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,6 +242,30 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		6DC53AC61515A9B056CC9F6E /* [Expo] Configure project */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/.xcode.env",
+				"$(SRCROOT)/.xcode.env.local",
+				"$(SRCROOT)/smartlegacyapp/smartlegacyapp.entitlements",
+				"$(SRCROOT)/Pods/Target Support Files/Pods-smartlegacyapp/expo-configure-project.sh",
+			);
+			name = "[Expo] Configure project";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(SRCROOT)/Pods/Target Support Files/Pods-smartlegacyapp/ExpoModulesProvider.swift",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-smartlegacyapp/expo-configure-project.sh\"\n";
+		};
 		800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -284,31 +308,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-smartlegacyapp/Pods-smartlegacyapp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8F43639045E6137AF7CBF9E9 /* [Expo] Configure project */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/.xcode.env",
-				"$(SRCROOT)/.xcode.env.local",
-				"$(SRCROOT)/smartlegacyapp/smartlegacyapp.entitlements",
-				"$(SRCROOT)/Pods/Target Support Files/Pods-smartlegacyapp/expo-configure-project.sh",
-			);
-			name = "[Expo] Configure project";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(SRCROOT)/Pods/Target Support Files/Pods-smartlegacyapp/ExpoModulesProvider.swift",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-smartlegacyapp/expo-configure-project.sh\"\n";
-		};
-		F8133799692AA22B64343893 /* [CP] Embed Pods Frameworks */ = {
+		BAC29FF32066F9D68E925269 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -338,7 +338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */,
-				8A0A9F97E9F00C3A2935082F /* ExpoModulesProvider.swift in Sources */,
+				97B06E1D53B9B4BF5DB0973F /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,13 +347,13 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1472C5A200A0CF3B23C18E3F /* Pods-smartlegacyapp.debug.xcconfig */;
+			baseConfigurationReference = 305D73D9ABABBEF39E7D357F /* Pods-smartlegacyapp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = smartlegacyapp/smartlegacyapp.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = HHCVC2R5LW;
+				DEVELOPMENT_TEAM = 7R376LH629;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -384,13 +384,13 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B64000C0F5A483AA295444DE /* Pods-smartlegacyapp.release.xcconfig */;
+			baseConfigurationReference = 280C95995373A0761DAC39BC /* Pods-smartlegacyapp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = smartlegacyapp/smartlegacyapp.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = HHCVC2R5LW;
+				DEVELOPMENT_TEAM = 7R376LH629;
 				INFOPLIST_FILE = smartlegacyapp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (

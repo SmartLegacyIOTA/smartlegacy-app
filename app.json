@@ -1,98 +1,113 @@
 {
-    "expo": {
-        "name": "smart-legacy-app",
-        "slug": "smart-legacy-app",
-        "version": "1.0.0",
-        "orientation": "portrait",
-        "icon": "./assets/images/icon.png",
-        "scheme": "smartlegacyapp",
-        "userInterfaceStyle": "automatic",
-        "newArchEnabled": true,
-        "ios": {
-            "supportsTablet": true,
-            "bundleIdentifier": "com.smartlegacy.smartlegacyapp",
-            "usesAppleSignIn": true,
-            "infoPlist": {
-                "CFBundleLocalizations": ["es", "en"]
-            },
-            "appleTeamId": "HHCVC2R5LW",
-            "associatedDomains": ["webcredentials:<your_domain>"]
-        },
-        "android": {
-            "adaptiveIcon": {
-                "backgroundColor": "#E6F4FE",
-                "foregroundImage": "./assets/images/android-icon-foreground.png",
-                "backgroundImage": "./assets/images/android-icon-background.png",
-                "monochromeImage": "./assets/images/android-icon-monochrome.png"
-            },
-            "edgeToEdgeEnabled": true,
-            "package": "com.smartlegacy.smartlegacyapp",
-            "softwareKeyboardLayoutMode": "pan"
-        },
-        "web": {
-            "output": "static",
-            "favicon": "./assets/images/favicon.png"
-        },
-        "plugins": [
-            "expo-router",
-            [
-                "expo-camera",
-                {
-                    "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera",
-                    "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone",
-                    "recordAudioAndroid": true
-                }
+  "expo": {
+    "name": "smart-legacy-app",
+    "slug": "smart-legacy-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "smartlegacyapp",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.smartlegacy.smartlegacyapp",
+      "buildNumber": "2",
+      "usesAppleSignIn": true,
+      "infoPlist": {
+        "CFBundleLocalizations": [
+          "es",
+          "en"
+        ]
+      },
+      "appleTeamId": "7R376LH629",
+      "associatedDomains": [
+        "webcredentials:api.smartlegacy.tech",
+        "webcredentials:qa-api.smartlegacy.tech"
+      ]
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/images/android-icon-foreground.png",
+        "backgroundImage": "./assets/images/android-icon-background.png",
+        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+      },
+      "edgeToEdgeEnabled": true,
+      "package": "com.smartlegacy.smartlegacyapp",
+      "softwareKeyboardLayoutMode": "pan"
+    },
+    "web": {
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera",
+          "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone",
+          "recordAudioAndroid": true
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff",
+          "dark": {
+            "backgroundColor": "#000000"
+          }
+        }
+      ],
+      [
+        "expo-secure-store",
+        {
+          "configureAndroidBackup": true,
+          "faceIDPermission": "Allow $(PRODUCT_NAME) to access your Face ID biometric data."
+        }
+      ],
+      [
+        "expo-apple-authentication"
+      ],
+      [
+        "expo-localization",
+        {
+          "supportedLocales": {
+            "ios": [
+              "es",
+              "en"
             ],
-            [
-                "expo-splash-screen",
-                {
-                    "image": "./assets/images/splash-icon.png",
-                    "imageWidth": 200,
-                    "resizeMode": "contain",
-                    "backgroundColor": "#ffffff",
-                    "dark": {
-                        "backgroundColor": "#000000"
-                    }
-                }
-            ],
-            [
-                "expo-secure-store",
-                {
-                    "configureAndroidBackup": true,
-                    "faceIDPermission": "Allow $(PRODUCT_NAME) to access your Face ID biometric data."
-                }
-            ],
-            ["expo-apple-authentication"],
-            [
-                "expo-localization",
-                {
-                    "supportedLocales": {
-                        "ios": ["es", "en"],
-                        "android": ["es", "en"]
-                    }
-                }
-            ],
-            [
-                "expo-local-authentication",
-                {
-                    "faceIDPermission": "Allow $(PRODUCT_NAME) to use Face ID."
-                }
+            "android": [
+              "es",
+              "en"
             ]
-        ],
-        "experiments": {
-            "typedRoutes": true,
-            "reactCompiler": true
-        },
-        "extra": {
-            "router": {},
-            "eas": {
-                "projectId": "1c2857f5-1445-4279-9fd7-09e78bb8ecd6"
-            }
-        },
-        "owner": "smart-legacy",
-        "updates": {
-            "url": "https://u.expo.dev/1c2857f5-1445-4279-9fd7-09e78bb8ecd6"
-        },
-        "runtimeVersion": "1.0.0"
-    }
+          }
+        }
+      ],
+      [
+        "expo-local-authentication",
+        {
+          "faceIDPermission": "Allow $(PRODUCT_NAME) to use Face ID."
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "1c2857f5-1445-4279-9fd7-09e78bb8ecd6"
+      }
+    },
+    "owner": "smart-legacy",
+    "updates": {
+      "url": "https://u.expo.dev/1c2857f5-1445-4279-9fd7-09e78bb8ecd6"
+    },
+    "runtimeVersion": "1.0.0"
+  }
 }

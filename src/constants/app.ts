@@ -1,1 +1,1 @@
-export const APP_NAME = 'SmartLegacy';
+export const APP_NAME = "SmartLegacy";
