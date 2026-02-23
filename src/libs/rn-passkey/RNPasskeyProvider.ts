@@ -8,7 +8,10 @@ export class RNPasskeyProvider {
   }): Promise<any> {
     return await Passkeys.create({
       challenge: args.challengeB64u, // 👈 STRING base64url
-      rp: { id: args.rpId, name: "SmartLegacy" },
+      rp: {
+        id: args.rpId,
+        name: process.env.EXPO_PUBLIC_APP_NAME || "SmartLegacy",
+      },
       user: {
         id: args.user.idB64u, // 👈 STRING base64url
         name: args.user.name,

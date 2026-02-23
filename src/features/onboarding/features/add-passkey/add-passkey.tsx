@@ -4,33 +4,14 @@ import { useTheme } from "@/src/theme/use-theme";
 import { useI18nService } from "@/src/libs/i18n/i18n-service";
 import { SharedButton } from "@/src/components/shared/shared-button";
 import { FeatureCard } from "@/src/features/onboarding/features/components/feature-card";
-import { useAddPasskey } from "@/src/features/onboarding/features/add-passkey/hooks/use-add-passkey";
 import { IntroSection } from "@/src/components/intro-section";
-import { RNPasskeyProvider } from "@/src/libs/rn-passkey/RNPasskeyProvider";
-import { ensureIotaPasskeySigner } from "@/src/libs/rn-passkey";
+import { useRnPasskey } from "@/src/hooks/use-rn-passkey";
 
 const AddPasskey = () => {
   const { t } = useI18nService();
   const theme = useTheme();
-  const { onCreatePasskey, loading } = useAddPasskey();
 
-  const onTestPasskey = async () => {
-    try {
-      const provider = new RNPasskeyProvider();
-
-      const signer = await ensureIotaPasskeySigner({
-        provider,
-        rpId: "qa-api.smartlegacy.tech",
-        userIdB64u: "dGVzdC11c2VyLWlk", // ideal: id real estable del usuario
-        username: "david",
-        displayName: "David",
-      });
-
-      console.log("IOTA address:", signer.toIotaAddress());
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { onOpenPasskeyProvider, isLoadingActionOpen } = useRnPasskey();
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.slBg }]}>
@@ -73,8 +54,8 @@ const AddPasskey = () => {
       <View style={styles.bottomSection}>
         <SharedButton
           variant="primary"
-          onPress={onTestPasskey}
-          loading={loading}
+          onPress={onOpenPasskeyProvider}
+          loading={isLoadingActionOpen}
           leftIcon={{
             type: "icon",
             config: {

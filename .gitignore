@@ -20,7 +20,8 @@ web-build/
 
 # Expo environment files
 .env
-.env.*
+.env.local
+.env.*.local
 !.env.example
 
 # ===============================
