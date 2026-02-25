@@ -1,5 +1,5 @@
 import * as LocalAuthentication from "expo-local-authentication";
-import { i18n } from "@/src/libs/i18n";
+import { i18n } from "@/src/framework/libs/i18n";
 
 type BiometricGateOptions = {
   reason?: string;

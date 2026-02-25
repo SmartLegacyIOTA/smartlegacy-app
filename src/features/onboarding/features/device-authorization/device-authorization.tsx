@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { useTheme } from "@/src/theme/use-theme";
-import { useI18nService } from "@/src/libs/i18n/i18n-service";
+import { useTheme } from "@/src/framework/theme/use-theme";
+import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
 import { SharedButton } from "@/src/components/shared/shared-button";
 import { SharedBanner } from "@/src/components/shared/shared-banner";
 import { useDeviceAuthorization } from "./hooks/use-device-authorization";

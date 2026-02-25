@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import { StyleSheet, View } from "react-native";
 import { MaterialCommunityIconName } from "@/src/components/ui/icon";
 import { SharedText } from "@/src/components/shared/shared-text";
-import { useTheme } from "@/src/theme/use-theme";
+import { useTheme } from "@/src/framework/theme/use-theme";
 import { SharedAvatar } from "@/src/components/shared/shared-avatar";
 import { SharedBadge } from "@/src/components/shared/shared-badge";
 
@@ -21,8 +21,6 @@ interface StatusCardProps {
 export function StatusCard({
   title,
   badgeText,
-  badgeColor,
-  badgeBgColor,
   borderColor,
   iconColor,
   iconBgColor,

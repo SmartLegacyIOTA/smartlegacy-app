@@ -1,5 +1,5 @@
-import { useSession } from "@/src/providers/session";
-import { useCurrentUser } from "@/src/providers/user";
+import { useSession } from "@/src/framework/providers/session";
+import { useCurrentUser } from "@/src/framework/providers/user";
 import { useEffect, useState } from "react";
 
 export const useLogin = () => {

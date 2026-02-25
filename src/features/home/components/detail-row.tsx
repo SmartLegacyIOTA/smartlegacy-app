@@ -2,9 +2,9 @@ import React from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Icon, MaterialCommunityIconName } from "@/src/components/ui/icon";
 import { SharedText } from "@/src/components/shared/shared-text";
-import { useTheme } from "@/src/theme/use-theme";
+import { useTheme } from "@/src/framework/theme/use-theme";
 
-import { useI18nService } from "@/src/libs/i18n/i18n-service";
+import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
 
 interface DetailRowProps {
   label: string;

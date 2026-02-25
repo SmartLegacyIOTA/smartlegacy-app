@@ -1,8 +1,8 @@
 import React from "react";
 import { Platform, ScrollView, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useTheme } from "@/src/theme/use-theme";
-import { useI18nService } from "@/src/libs/i18n/i18n-service";
+import { useTheme } from "@/src/framework/theme/use-theme";
+import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
 import { SharedCard } from "@/src/components/shared/shared-card";
 import { SharedRow } from "@/src/components/shared/shared-row";
 import { SharedDivider } from "@/src/components/shared/shared-divider";

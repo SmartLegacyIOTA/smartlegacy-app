@@ -1,6 +1,6 @@
 import React from "react";
 import { Platform, Switch } from "react-native";
-import { useTheme } from "@/src/theme/use-theme";
+import { useTheme } from "@/src/framework/theme/use-theme";
 
 interface SharedToggleProps {
   value: boolean;

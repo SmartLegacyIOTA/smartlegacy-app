@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import { StyleProp, StyleSheet, View, ViewStyle } from "react-native";
-import { useTheme } from "@/src/theme/use-theme";
+import { useTheme } from "@/src/framework/theme/use-theme";
 import { SharedText } from "@/src/components/shared/shared-text";
 
 interface SharedCardProps {

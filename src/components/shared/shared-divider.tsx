@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { useTheme } from "@/src/theme/use-theme";
+import { useTheme } from "@/src/framework/theme/use-theme";
 
 export function SharedDivider() {
   const theme = useTheme();

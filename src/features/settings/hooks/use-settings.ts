@@ -1,9 +1,9 @@
 import { useCallback, useState } from "react";
 import { Alert } from "react-native";
 import { router } from "expo-router";
-import { useI18nService } from "@/src/libs/i18n/i18n-service";
-import { useSession } from "@/src/providers/session";
-import { useCurrentUser } from "@/src/providers/user";
+import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
+import { useSession } from "@/src/framework/providers/session";
+import { useCurrentUser } from "@/src/framework/providers/user";
 
 export interface UserData {
   name: string;

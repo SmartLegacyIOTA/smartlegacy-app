@@ -7,8 +7,8 @@ import Animated, {
   useScrollOffset,
 } from "react-native-reanimated";
 
-import { useColorScheme } from "@/src/hooks/use-color-scheme";
-import { useThemeColor } from "@/src/hooks/use-theme-color";
+import { useColorScheme } from "@/src/framework/hooks/use-color-scheme";
+import { useThemeColor } from "@/src/framework/hooks/use-theme-color";
 
 const HEADER_HEIGHT = 250;
 

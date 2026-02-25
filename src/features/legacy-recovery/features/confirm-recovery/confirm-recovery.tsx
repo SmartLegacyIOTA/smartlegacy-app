@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { Platform, ScrollView, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { router } from "expo-router";
-import { useTheme } from "@/src/theme/use-theme";
-import { useI18nService } from "@/src/libs/i18n/i18n-service";
+import { useTheme } from "@/src/framework/theme/use-theme";
+import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
 import { SharedCard } from "@/src/components/shared/shared-card";
 import { SharedButton } from "@/src/components/shared/shared-button";
 import { SharedCheckbox } from "@/src/components/shared/shared-checkbox";
 import { SharedDivider } from "@/src/components/shared/shared-divider";
 import { IntroSection } from "@/src/components/intro-section";
-import { formatMoneyWithDecimals } from "@/src/utils/money";
+import { formatMoneyWithDecimals } from "@/src/framework/utils/money";
 import { useConfirmRecovery } from "./hooks/use-confirm-recovery";
 import { SharedRow } from "@/src/components/shared/shared-row";
 

@@ -3,7 +3,7 @@ import {
   DEFAULT_IOTA_NETWORK,
   IOTA_NETWORK,
   type IotaNetwork,
-} from "../config/iota.config";
+} from "../../config/iota.config";
 
 let singleton: IotaClient | null = null;
 

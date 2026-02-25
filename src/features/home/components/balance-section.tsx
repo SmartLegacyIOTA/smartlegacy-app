@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import { SharedText } from "@/src/components/shared/shared-text";
 
-import { useI18nService } from "@/src/libs/i18n/i18n-service";
+import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
 
 interface BalanceSectionProps {
   totalBalance: string;

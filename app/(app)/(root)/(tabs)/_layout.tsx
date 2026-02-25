@@ -3,8 +3,8 @@ import React from "react";
 
 import { HapticTab } from "@/src/components/haptic-tab";
 import { IconSymbol } from "@/src/components/ui/icon-symbol";
-import { useTheme } from "@/src/theme/use-theme";
-import { useI18nService } from "@/src/libs/i18n/i18n-service";
+import { useTheme } from "@/src/framework/theme/use-theme";
+import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
 
 export default function TabLayout() {
   const theme = useTheme();

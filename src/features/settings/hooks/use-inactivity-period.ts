@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { router } from "expo-router";
-import { useI18nService } from "@/src/libs/i18n/i18n-service";
+import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
 
 export interface PeriodOption {
   value: number;

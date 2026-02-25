@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { Alert } from "react-native";
 import { router } from "expo-router";
-import { useI18nService } from "@/src/libs/i18n/i18n-service";
+import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
 
 // Mock data - Replace with real data from your state management
 const MOCK_DATA = {

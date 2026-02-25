@@ -1,6 +1,6 @@
 import React from "react";
 import { TouchableOpacity, View, StyleSheet } from "react-native";
-import { useTheme } from "@/src/theme/use-theme";
+import { useTheme } from "@/src/framework/theme/use-theme";
 import { SharedText } from "./shared-text";
 import { Icon } from "@/src/components/ui/icon";
 

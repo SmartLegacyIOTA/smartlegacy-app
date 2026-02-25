@@ -1,7 +1,7 @@
 import React from "react";
 import { Platform, ScrollView, StyleSheet, View } from "react-native";
-import { useTheme } from "@/src/theme/use-theme";
-import { useI18nService } from "@/src/libs/i18n/i18n-service";
+import { useTheme } from "@/src/framework/theme/use-theme";
+import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { SharedAvatar } from "@/src/components/shared/shared-avatar";
 import { SharedText } from "@/src/components/shared/shared-text";

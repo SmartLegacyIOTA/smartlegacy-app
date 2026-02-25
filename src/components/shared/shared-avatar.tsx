@@ -2,8 +2,8 @@ import React from "react";
 import { StyleProp, StyleSheet, View, ViewStyle } from "react-native";
 import { Icon, MaterialCommunityIconName } from "@/src/components/ui/icon";
 import { SharedText } from "./shared-text";
-import { useTheme } from "@/src/theme/use-theme";
-import { ThemeColor } from "@/src/theme/theme";
+import { useTheme } from "@/src/framework/theme/use-theme";
+import { ThemeColor } from "@/src/framework/theme/theme";
 
 export type AvatarSize = "small" | "medium" | "large" | "xlarge";
 

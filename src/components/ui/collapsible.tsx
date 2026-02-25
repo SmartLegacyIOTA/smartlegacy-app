@@ -3,8 +3,8 @@ import { StyleSheet, TouchableOpacity, View } from "react-native";
 
 import { IconSymbol } from "@/src/components/ui/icon-symbol";
 import { Colors } from "@/src/constants/theme";
-import { useColorScheme } from "@/src/hooks/use-color-scheme";
-import { TypographyVariant } from "@/src/theme/typography";
+import { useColorScheme } from "@/src/framework/hooks/use-color-scheme";
+import { TypographyVariant } from "@/src/framework/theme/typography";
 import { SharedText } from "@/src/components/shared/shared-text";
 
 export function Collapsible({

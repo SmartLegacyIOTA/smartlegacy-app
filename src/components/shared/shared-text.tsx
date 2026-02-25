@@ -1,8 +1,8 @@
 import React, { ReactNode } from "react";
 import { StyleProp, StyleSheet, Text, TextStyle } from "react-native";
-import { useTheme } from "@/src/theme/use-theme";
-import { TypographyVariant } from "@/src/theme/typography";
-import { ThemeColor } from "@/src/theme/theme";
+import { useTheme } from "@/src/framework/theme/use-theme";
+import { TypographyVariant } from "@/src/framework/theme/typography";
+import { ThemeColor } from "@/src/framework/theme/theme";
 
 export interface SharedTextProps {
   variant?: TypographyVariant;

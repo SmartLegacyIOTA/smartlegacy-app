@@ -8,7 +8,7 @@ import {
   View,
   ViewStyle,
 } from "react-native";
-import { useTheme } from "@/src/theme/use-theme";
+import { useTheme } from "@/src/framework/theme/use-theme";
 import { IconSymbol, IconSymbolName } from "@/src/components/ui/icon-symbol";
 import { Icon, IconProps } from "@/src/components/ui/icon";
 

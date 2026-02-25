@@ -3,8 +3,8 @@ import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Icon } from "@/src/components/ui/icon";
 import { SharedText } from "@/src/components/shared/shared-text";
 import { SharedAvatar } from "@/src/components/shared/shared-avatar";
-import { useTheme } from "@/src/theme/use-theme";
-import { useI18nService } from "@/src/libs/i18n/i18n-service";
+import { useTheme } from "@/src/framework/theme/use-theme";
+import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
 
 interface HeaderSectionProps {
   userName: string;

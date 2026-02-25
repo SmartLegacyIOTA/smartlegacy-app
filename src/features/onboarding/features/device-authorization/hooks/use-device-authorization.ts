@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useCurrentUser } from "@/src/providers/user";
-import { useSession } from "@/src/providers/session";
+import { useCurrentUser } from "@/src/framework/providers/user";
+import { useSession } from "@/src/framework/providers/session";
 import { router } from "expo-router";
 
 export const useDeviceAuthorization = () => {

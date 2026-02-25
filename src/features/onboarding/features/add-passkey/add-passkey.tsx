@@ -1,11 +1,11 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { useTheme } from "@/src/theme/use-theme";
-import { useI18nService } from "@/src/libs/i18n/i18n-service";
+import { useTheme } from "@/src/framework/theme/use-theme";
+import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
 import { SharedButton } from "@/src/components/shared/shared-button";
 import { FeatureCard } from "@/src/features/onboarding/features/components/feature-card";
 import { IntroSection } from "@/src/components/intro-section";
-import { useRnPasskey } from "@/src/hooks/use-rn-passkey";
+import { useRnPasskey } from "@/src/framework/hooks/use-rn-passkey";
 
 const AddPasskey = () => {
   const { t } = useI18nService();

@@ -6,25 +6,57 @@ import {
 import { SplashScreen, Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import "react-native-reanimated";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import { useColorScheme } from "@/src/hooks/use-color-scheme";
-import { MeThemeProvider } from "@/src/theme/theme-context";
-import { SessionProvider, useSession } from "@/src/providers/session";
-import { UserProvider, useCurrentUser } from "@/src/providers/user";
-import { I18nProvider, useI18nService } from "@/src/libs/i18n/i18n-service";
-import { useTheme } from "@/src/theme/use-theme";
+import { useColorScheme } from "@/src/framework/hooks/use-color-scheme";
+import { MeThemeProvider } from "@/src/framework/theme/theme-context";
+import { SessionProvider, useSession } from "@/src/framework/providers/session";
+import { UserProvider, useCurrentUser } from "@/src/framework/providers/user";
+import {
+  I18nProvider,
+  useI18nService,
+} from "@/src/framework/libs/i18n/i18n-service";
+import { useTheme } from "@/src/framework/theme/use-theme";
+import { MyApiProvider } from "@/src/framework/api/api-provider";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1,
+      retryDelay: 1000,
+      staleTime: 1000 * 60 * 1,
+    },
+    mutations: {
+      retry: 1,
+      retryDelay: 1000,
+    },
+  },
+});
 
 export default function Root() {
   SplashScreen.preventAutoHideAsync();
 
   return (
-    <SessionProvider>
-      <UserProvider>
-        <I18nProvider>
-          <RootNavigator />
-        </I18nProvider>
-      </UserProvider>
-    </SessionProvider>
+    <QueryClientProvider client={queryClient}>
+      <SessionProvider>
+        <ApiWrapper>
+          <UserProvider>
+            <I18nProvider>
+              <RootNavigator />
+            </I18nProvider>
+          </UserProvider>
+        </ApiWrapper>
+      </SessionProvider>
+    </QueryClientProvider>
+  );
+}
+
+function ApiWrapper({ children }: { children: React.ReactNode }) {
+  const { session, signOut } = useSession();
+  return (
+    <MyApiProvider token={session || ""} logoutFn={signOut}>
+      {children}
+    </MyApiProvider>
   );
 }
 

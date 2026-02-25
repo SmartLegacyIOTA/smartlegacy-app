@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { useI18nService } from "@/src/libs/i18n/i18n-service";
+import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
 
 export function useAddHeir() {
   const { t } = useI18nService();

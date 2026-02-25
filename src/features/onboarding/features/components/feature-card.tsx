@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import { Icon, MaterialCommunityIconName } from "@/src/components/ui/icon";
 import { SharedText } from "@/src/components/shared/shared-text";
-import { useTheme } from "@/src/theme/use-theme";
+import { useTheme } from "@/src/framework/theme/use-theme";
 
 interface FeatureCardProps {
   iconName: MaterialCommunityIconName;

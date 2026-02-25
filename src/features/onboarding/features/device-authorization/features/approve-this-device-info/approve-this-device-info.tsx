@@ -6,11 +6,11 @@ import { SharedCard } from "@/src/components/shared/shared-card";
 import { SharedRow } from "@/src/components/shared/shared-row";
 import { SharedAvatar } from "@/src/components/shared/shared-avatar";
 import { SharedDivider } from "@/src/components/shared/shared-divider";
-import { useI18nService } from "@/src/libs/i18n/i18n-service";
-import { useTheme } from "@/src/theme/use-theme";
+import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
+import { useTheme } from "@/src/framework/theme/use-theme";
 import { useCameraPermissions } from "expo-camera";
 import { router, useLocalSearchParams } from "expo-router";
-import { navigationCallbackRegistry } from "@/src/utils/navigation-callback-registry";
+import { navigationCallbackRegistry } from "@/src/framework/utils/navigation-callback-registry";
 
 const ApproveThisDeviceInfo = () => {
   const { t } = useI18nService();

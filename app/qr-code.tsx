@@ -4,10 +4,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { CameraView } from "expo-camera";
 import { Platform, StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { useTheme } from "@/src/theme/use-theme";
+import { useTheme } from "@/src/framework/theme/use-theme";
 
 import { router, useLocalSearchParams } from "expo-router";
-import { navigationCallbackRegistry } from "@/src/utils/navigation-callback-registry";
+import { navigationCallbackRegistry } from "@/src/framework/utils/navigation-callback-registry";
 
 const QrCode = () => {
   const theme = useTheme();

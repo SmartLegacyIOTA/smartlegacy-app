@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useTheme } from "@/src/theme/use-theme";
+import { useTheme } from "@/src/framework/theme/use-theme";
 import { SharedText } from "@/src/components/shared/shared-text";
 import { SharedEmptyState } from "@/src/components/shared/shared-empty-state";
 import { SharedBanner } from "@/src/components/shared/shared-banner";
@@ -14,7 +14,7 @@ import { BalanceSection } from "./components/balance-section";
 import { GuardianCard } from "./components/guardian-card";
 import { ActivityItem } from "./components/activity-item";
 
-import { useI18nService } from "@/src/libs/i18n/i18n-service";
+import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
 
 const Home = () => {
   const theme = useTheme();

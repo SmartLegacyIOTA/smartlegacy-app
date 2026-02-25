@@ -8,8 +8,8 @@ import { Icon } from "@/src/components/ui/icon";
 import { SharedText } from "@/src/components/shared/shared-text";
 import { FeatureCard } from "@/src/features/onboarding/features/components/feature-card";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useTheme } from "@/src/theme/use-theme";
-import { useI18nService } from "@/src/libs/i18n/i18n-service";
+import { useTheme } from "@/src/framework/theme/use-theme";
+import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
 import { APP_NAME } from "@/src/constants/app";
 
 const Login = () => {

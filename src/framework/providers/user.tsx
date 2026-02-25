@@ -5,7 +5,7 @@ import {
   useState,
   useEffect,
 } from "react";
-import { useStorageState } from "@/src/hooks/use-storage";
+import { useStorageState } from "@/src/framework/hooks/use-storage";
 
 export type SecurityLevel = "UNSECURED" | "SECURED";
 

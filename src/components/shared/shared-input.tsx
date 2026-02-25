@@ -1,7 +1,7 @@
 import React, { forwardRef } from "react";
 import { StyleSheet, TextInput, TextInputProps, View } from "react-native";
 import { SharedText } from "./shared-text";
-import { useTheme } from "@/src/theme/use-theme";
+import { useTheme } from "@/src/framework/theme/use-theme";
 
 export interface SharedInputProps extends Omit<TextInputProps, "style"> {
   label?: string;

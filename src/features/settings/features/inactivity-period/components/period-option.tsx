@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
-import { useTheme } from "@/src/theme/use-theme";
+import { useTheme } from "@/src/framework/theme/use-theme";
 import { SharedText } from "@/src/components/shared/shared-text";
 import { RadioButton } from "@/src/components/shared/radio-button";
 

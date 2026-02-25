@@ -4,8 +4,8 @@ import { MaterialCommunityIconName } from "@/src/components/ui/icon";
 import { SharedText } from "@/src/components/shared/shared-text";
 import { SharedAvatar } from "@/src/components/shared/shared-avatar";
 
-import { useI18nService } from "@/src/libs/i18n/i18n-service";
-import { ThemeColor } from "@/src/theme/theme";
+import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
+import { ThemeColor } from "@/src/framework/theme/theme";
 
 interface IntroSectionProps {
   iconName: MaterialCommunityIconName;

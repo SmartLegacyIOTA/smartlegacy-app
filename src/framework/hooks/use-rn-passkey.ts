@@ -1,9 +1,9 @@
 import {
   ensureIotaPasskeySigner,
   RNPasskeyProvider,
-} from "@/src/libs/rn-passkey";
+} from "@/src/framework/libs/rn-passkey";
 import { useState } from "react";
-import { bytesToB64url } from "@/src/libs/rn-passkey/weauthn-b64";
+import { bytesToB64url } from "@/src/framework/libs/rn-passkey/weauthn-b64";
 
 export const useRnPasskey = () => {
   const [isLoadingActionOpen, setIsLoadingActionOpen] = useState(false);

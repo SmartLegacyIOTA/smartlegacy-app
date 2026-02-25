@@ -5,7 +5,7 @@ import { SharedButton } from "./shared-button";
 import { SharedAvatar } from "./shared-avatar";
 import { MaterialCommunityIconName } from "@/src/components/ui/icon";
 
-import { useI18nService } from "@/src/libs/i18n/i18n-service";
+import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
 
 export interface SharedEmptyStateProps {
   iconName: MaterialCommunityIconName;

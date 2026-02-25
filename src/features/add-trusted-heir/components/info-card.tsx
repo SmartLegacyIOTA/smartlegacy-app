@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import { StyleSheet, View } from "react-native";
-import { useTheme } from "@/src/theme/use-theme";
+import { useTheme } from "@/src/framework/theme/use-theme";
 
 interface InfoCardProps {
   children: ReactNode;

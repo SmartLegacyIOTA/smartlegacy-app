@@ -1,8 +1,8 @@
 import React from "react";
 import { Platform, ScrollView, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useTheme } from "@/src/theme/use-theme";
-import { useI18nService } from "@/src/libs/i18n/i18n-service";
+import { useTheme } from "@/src/framework/theme/use-theme";
+import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
 import { SharedCard } from "@/src/components/shared/shared-card";
 import { SharedAvatar } from "@/src/components/shared/shared-avatar";
 import { SharedBadge } from "@/src/components/shared/shared-badge";
@@ -11,7 +11,7 @@ import { SharedButton } from "@/src/components/shared/shared-button";
 import { SharedText } from "@/src/components/shared/shared-text";
 import { SharedDivider } from "@/src/components/shared/shared-divider";
 import { useLegacyRecovery } from "./hooks/use-legacy-recovery";
-import { formatMoneyWithDecimals } from "@/src/utils/money";
+import { formatMoneyWithDecimals } from "@/src/framework/utils/money";
 import { IntroSection } from "@/src/components/intro-section";
 
 const LegacyRecovery = () => {

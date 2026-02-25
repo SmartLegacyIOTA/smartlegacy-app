@@ -1,7 +1,7 @@
 import { Stack } from "expo-router";
 import "react-native-reanimated";
-import { useI18nService } from "@/src/libs/i18n/i18n-service";
-import { useTheme } from "@/src/theme/use-theme";
+import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
+import { useTheme } from "@/src/framework/theme/use-theme";
 
 export const unstable_settings = {
   anchor: "(tabs)",

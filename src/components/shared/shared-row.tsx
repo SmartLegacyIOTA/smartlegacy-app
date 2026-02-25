@@ -7,7 +7,7 @@ import {
   View,
   ViewStyle,
 } from "react-native";
-import { useTheme } from "@/src/theme/use-theme";
+import { useTheme } from "@/src/framework/theme/use-theme";
 import { SharedText } from "@/src/components/shared/shared-text";
 import { Icon, MaterialCommunityIconName } from "@/src/components/ui/icon";
 

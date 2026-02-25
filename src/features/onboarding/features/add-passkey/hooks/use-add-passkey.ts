@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useCurrentUser } from "@/src/providers/user";
+import { useCurrentUser } from "@/src/framework/providers/user";
 
 export const useAddPasskey = () => {
   const { user, setUser } = useCurrentUser();

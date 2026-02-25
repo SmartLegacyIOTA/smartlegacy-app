@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { Alert } from "react-native";
-import { useI18nService } from "@/src/libs/i18n/i18n-service";
+import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
 
 // Mock data - Should match the data from legacy-recovery
 const MOCK_DATA = {
