@@ -33,11 +33,10 @@ export const useLogin = () => {
           console.log(response);
           signIn(response.accessToken);
           setUser({
-            userId: response.user.id,
-            hasPasskey: response.user.hasPasskey,
+            ...response.user,
             trustedDevices: [],
-            securityLevel: response.user.securityLevel,
-            isNewDevice: response.user.isNewDevice,
+            hasPasskey: !!response.user.iotaAddress,
+            securityLevel: response.user.iotaAddress ? "SECURED" : "UNSECURED",
           });
         }
       }
@@ -50,48 +49,6 @@ export const useLogin = () => {
 
   const onApple = async () => {
     signIn("123");
-    // TODO: Remove this mock data and use real backend response
-    // Mock user data for testing - simulating a trusted device with rn-passkey
-    setUser({
-      userId: "u_123",
-      hasPasskey: true,
-      trustedDevices: ["device-123"],
-      securityLevel: "SECURED",
-      isNewDevice: false,
-    });
-    // try {
-    //     setLoadingApple(true);
-    //     const identityToken = await appleLoginGetIdentityToken();
-    //     if (!identityToken) return;
-    //
-    //     const { accessToken, userData } = await exchangeAppleIdentityTokenForJwt(identityToken);
-    //     setToken(accessToken);
-    //     signIn(accessToken);
-    //
-    //     // Get current device ID
-    //     const currentDeviceId = await getCurrentDeviceId();
-    //
-    //     // Check if current device is trusted
-    //     const isNewDevice = !userData.hasPasskey &&
-    //                        !userData.trustedDevices.includes(currentDeviceId);
-    //
-    //     // Save user data from backend response
-    //     setUser({
-    //         userId: userData.userId,
-    //         hasPasskey: userData.hasPasskey,
-    //         trustedDevices: userData.trustedDevices,
-    //         securityLevel: userData.securityLevel,
-    //         isNewDevice,
-    //         deviceInfo: isNewDevice ? userData.deviceInfo : undefined
-    //     });
-    //
-    //     // Navigation will be handled automatically by _layout.tsx based on user state
-    //     // If isNewDevice is true, user will be shown device-authorization screen
-    // } catch (e: any) {
-    //     Alert.alert('Login error', e?.message ?? 'Unknown');
-    // } finally {
-    //     setLoadingApple(false);
-    // }
   };
 
   return {

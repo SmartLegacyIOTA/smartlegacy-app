@@ -4,9 +4,12 @@ import {
 } from "@/src/framework/libs/rn-passkey";
 import { useState } from "react";
 import { bytesToB64url } from "@/src/framework/libs/rn-passkey/weauthn-b64";
+import { toastError } from "@/src/framework/lib/toast/toast";
+import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
 
 export const useRnPasskey = () => {
   const [isLoadingActionOpen, setIsLoadingActionOpen] = useState(false);
+  const { t } = useI18nService();
 
   // ======================
   // Challenge (demo)
@@ -42,6 +45,7 @@ export const useRnPasskey = () => {
       console.log("IOTA address:", signer.toIotaAddress());
     } catch (error) {
       console.log(error);
+      toastError(t("biometric.passkeyError"));
     } finally {
       setIsLoadingActionOpen(false);
     }

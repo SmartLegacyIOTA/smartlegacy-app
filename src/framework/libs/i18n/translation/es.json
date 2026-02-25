@@ -5,7 +5,8 @@
     "defaultPrompt": "Confirma con tus datos biométricos",
     "notAvailable": "Biometría no disponible en este dispositivo",
     "notEnrolled": "No hay datos biométricos registrados (FaceID/TouchID/Huella)",
-    "failed": "La autenticación biométrica ha fallado"
+    "failed": "La autenticación biométrica ha fallado",
+    "passkeyError": "Error al crear el acceso seguro. Por favor, inténtalo de nuevo."
   },
   "iota": {
     "vaultNotFound": "Bóveda no encontrada on-chain"

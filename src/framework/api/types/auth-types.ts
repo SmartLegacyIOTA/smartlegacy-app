@@ -1,20 +1,21 @@
+export type UserStatus = "ACTIVE" | "RECOVERY_MODE" | "DECEASED" | "LOCKED";
+
 export interface UserDto {
   id: string;
   email: string;
-  sub: string;
+  name: string;
+  profileImage: string | null;
   picture?: string;
-  iotaAddress?: string;
-  publicKey?: string;
-  hasPasskey: boolean;
-  securityLevel: "UNSECURED" | "SECURED";
-  isNewDevice: boolean;
+  iotaAddress: string;
+  publicKey: string;
+  status: UserStatus;
   createdAt: string;
-  updatedAt: string;
 }
 
 export interface AuthResponseDto {
   accessToken: string;
   user: UserDto;
+  isNew: boolean;
 }
 
 export interface OAuthDto {

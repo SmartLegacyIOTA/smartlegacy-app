@@ -6,15 +6,14 @@ import {
   useEffect,
 } from "react";
 import { useStorageState } from "@/src/framework/hooks/use-storage";
+import { UserDto } from "../api/types/auth-types";
 
 export type SecurityLevel = "UNSECURED" | "SECURED";
 
-export interface UserData {
-  userId: string;
-  hasPasskey: boolean;
+export interface UserData extends UserDto {
   trustedDevices: string[];
   securityLevel: SecurityLevel;
-  isNewDevice?: boolean;
+  hasPasskey: boolean;
 }
 
 const UserContext = createContext<{
