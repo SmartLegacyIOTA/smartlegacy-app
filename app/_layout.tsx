@@ -86,20 +86,12 @@ const RootNavigator = () => {
 
   SplashScreen.hide();
 
-  // User has no session -> show login
-  const shouldShowLogin = !session;
+  // User has no session -> show bootstrap
+  const shouldShowBootstrap = !session || user?.nextStep === "SIGN_IN";
 
-  // User has session and is a new/unauthorized device -> show device authorization
-  const shouldShowDeviceAuthorization =
-    !!session && user?.isNewDevice === true && !user?.hasPasskey;
-
-  // User has session but no secure access (no rn-passkey or UNSECURED) -> show add-rn-passkey
-  const shouldShowAddPasskey =
-    !!session && user?.isNewDevice !== true && !user?.hasPasskey;
-
-  // User has session and secure access -> show app
-  const shouldShowApp =
-    !!session && !!user?.hasPasskey && user?.securityLevel === "SECURED";
+  const showApp = user?.nextStep === "APP";
+  const showCreatePasskey = user?.nextStep === "CREATE_PASSKEY";
+  const showDeviceApproval = user?.nextStep === "DEVICE_APPROVAL";
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
@@ -110,18 +102,22 @@ const RootNavigator = () => {
             fullScreenGestureEnabled: true,
           }}
         >
-          <Stack.Protected guard={shouldShowApp}>
+          <Stack.Protected guard={showApp}>
             <Stack.Screen name="(app)" options={{ headerShown: false }} />
           </Stack.Protected>
 
-          <Stack.Protected guard={shouldShowLogin}>
+          <Stack.Protected guard={shouldShowBootstrap}>
+            <Stack.Screen
+              name="onboarding/auth-bootstrap"
+              options={{ headerShown: false }}
+            />
             <Stack.Screen
               name="onboarding/sign-in"
               options={{ headerShown: false }}
             />
           </Stack.Protected>
 
-          <Stack.Protected guard={shouldShowDeviceAuthorization}>
+          <Stack.Protected guard={showDeviceApproval}>
             <Stack.Screen
               name="onboarding/(device-authorization)/device-authorization"
               options={{
@@ -146,7 +142,7 @@ const RootNavigator = () => {
             />
           </Stack.Protected>
 
-          <Stack.Protected guard={shouldShowAddPasskey}>
+          <Stack.Protected guard={showCreatePasskey}>
             <Stack.Screen
               name="onboarding/add-passkey"
               options={{

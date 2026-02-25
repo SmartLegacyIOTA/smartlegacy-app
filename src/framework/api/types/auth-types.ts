@@ -1,4 +1,12 @@
 export type UserStatus = "ACTIVE" | "RECOVERY_MODE" | "DECEASED" | "LOCKED";
+export type DeviceStatus = "TRUSTED" | "NEW" | "PENDING" | "REVOKED";
+
+export type NextStep =
+  | "APP"
+  | "CREATE_PASSKEY"
+  | "DEVICE_APPROVAL"
+  | "SIGN_IN"
+  | "ERROR";
 
 export interface UserDto {
   id: string;
@@ -9,6 +17,7 @@ export interface UserDto {
   iotaAddress: string;
   publicKey: string;
   status: UserStatus;
+  nextStep: NextStep;
   createdAt: string;
 }
 
@@ -18,13 +27,28 @@ export interface AuthResponseDto {
   isNew: boolean;
 }
 
+export interface WebAuthnChallengeDto {
+  challenge: string;
+  userId: string;
+  rpId: string;
+  user: UserDto;
+}
+
+export interface WebAuthnVerifyDto {
+  id: string;
+  rawId: string;
+  type: string;
+  response: {
+    clientDataJSON: string;
+    authenticatorData: string;
+    signature: string;
+    userHandle?: string;
+    attestationObject?: string;
+  };
+}
+
 export interface OAuthDto {
-  code: string;
-  // provider: "google" | "apple";
-  publicKey?: string;
-  iotaAddress?: string;
-  signature?: string;
-  challenge?: string;
+  idToken: string;
 }
 
 export interface RegisterDidDto {

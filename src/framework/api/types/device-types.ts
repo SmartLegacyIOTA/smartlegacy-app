@@ -21,3 +21,7 @@ export interface DeviceResponse {
   label: string;
   createdAt: string;
 }
+
+export interface ApproveChallengeDto {
+  enrollId: string;
+}

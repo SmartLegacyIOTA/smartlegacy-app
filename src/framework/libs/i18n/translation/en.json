@@ -6,7 +6,8 @@
     "notAvailable": "Biometrics not available on this device",
     "notEnrolled": "No biometrics enrolled (FaceID/TouchID/Fingerprint)",
     "failed": "Biometric authentication failed",
-    "passkeyError": "Failed to create secure access. Please try again."
+    "passkeyError": "Failed to create secure access. Please try again.",
+    "passkeyCreated": "Secure access created successfully."
   },
   "iota": {
     "vaultNotFound": "Vault not found on-chain"

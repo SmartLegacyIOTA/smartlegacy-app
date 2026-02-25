@@ -14,10 +14,7 @@
       "buildNumber": "2",
       "usesAppleSignIn": true,
       "infoPlist": {
-        "CFBundleLocalizations": [
-          "es",
-          "en"
-        ]
+        "CFBundleLocalizations": ["es", "en"]
       },
       "appleTeamId": "7R376LH629",
       "associatedDomains": [
@@ -69,21 +66,13 @@
           "faceIDPermission": "Allow $(PRODUCT_NAME) to access your Face ID biometric data."
         }
       ],
-      [
-        "expo-apple-authentication"
-      ],
+      ["expo-apple-authentication"],
       [
         "expo-localization",
         {
           "supportedLocales": {
-            "ios": [
-              "es",
-              "en"
-            ],
-            "android": [
-              "es",
-              "en"
-            ]
+            "ios": ["es", "en"],
+            "android": ["es", "en"]
           }
         }
       ],
@@ -91,6 +80,12 @@
         "expo-local-authentication",
         {
           "faceIDPermission": "Allow $(PRODUCT_NAME) to use Face ID."
+        }
+      ],
+      [
+        "@react-native-google-signin/google-signin",
+        {
+          "iosUrlScheme": "com.googleusercontent.apps.505434504889-e8akne6h03qbk8h99ofq7eccnn0h2669"
         }
       ]
     ],

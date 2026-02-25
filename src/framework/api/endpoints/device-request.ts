@@ -1,5 +1,6 @@
 import { MyApiRequest } from "../my-api";
 import {
+  ApproveChallengeDto,
   DeviceResponse,
   LinkFinishDto,
   LinkStartDto,
@@ -19,6 +20,10 @@ export function getDeviceModule(request: MyApiRequest) {
     return response.json();
   }
 
+  async function approveChallenge(body: ApproveChallengeDto): Promise<void> {
+    await request("/devices/enroll/approve-challenge", "POST", body);
+  }
+
   async function renameDevice(
     id: string,
     body: RenameDeviceDto,
@@ -33,6 +38,7 @@ export function getDeviceModule(request: MyApiRequest) {
   return {
     linkStart,
     linkFinish,
+    approveChallenge,
     renameDevice,
     revokeDevice,
   };

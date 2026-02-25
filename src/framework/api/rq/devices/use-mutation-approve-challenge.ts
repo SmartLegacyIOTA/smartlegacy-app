@@ -1,18 +1,20 @@
 import { useMutation } from "@tanstack/react-query";
 import { useMyApi } from "../../api-provider";
-import { OAuthDto } from "../../types/auth-types";
+import { ApproveChallengeDto } from "../../types/device-types";
 import { toastError } from "@/src/framework/lib/toast/toast";
 import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
 
-export const useMutationOAuth = () => {
+export const useMutationApproveChallenge = () => {
   const api = useMyApi();
   const { t } = useI18nService();
 
   return useMutation({
-    mutationFn: (body: OAuthDto) => api.auth().oauth(body),
+    mutationFn: (body: ApproveChallengeDto) =>
+      api.devices().approveChallenge(body),
     onError: (error: any) => {
-      toastError(t("login.error"));
-      console.error("OAuth Mutation Error:", error);
+      toastError(t("login.error"), {
+        description: error?.message || error?.errorMessage,
+      });
     },
   });
 };

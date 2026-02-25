@@ -5,6 +5,8 @@ import {
   OAuthDto,
   RegisterDidDto,
   UserDto,
+  WebAuthnChallengeDto,
+  WebAuthnVerifyDto,
 } from "../types/auth-types";
 
 export function getAuthModule(request: MyApiRequest) {
@@ -28,15 +30,39 @@ export function getAuthModule(request: MyApiRequest) {
     return response.json();
   }
 
-  async function refresh(): Promise<{ accessToken: string }> {
-    const response = await request("/v1/auth/refresh", "POST");
+  async function getAuthOptions(email?: string): Promise<WebAuthnChallengeDto> {
+    const query = email ? `?email=${email}` : "";
+    const response = await request(`/v1/passkeys/auth-options${query}`, "GET");
     return response.json();
   }
 
-  // Mantenemos el anterior por compatibilidad si es necesario,
-  // aunque el Swagger usa /v1/auth/login
-  async function google(token: string) {
-    const response = await request("/user/google", "POST", { token });
+  async function getRegisterOptions(): Promise<WebAuthnChallengeDto> {
+    const response = await request("/v1/passkeys/register-options", "GET");
+    return response.json();
+  }
+
+  async function verifyRegister(
+    body: WebAuthnVerifyDto,
+  ): Promise<AuthResponseDto> {
+    const response = await request(
+      "/v1/passkeys/register-verify",
+      "POST",
+      body,
+    );
+    return response.json();
+  }
+
+  async function verifyAuth(body: WebAuthnVerifyDto): Promise<AuthResponseDto> {
+    const response = await request("/v1/passkeys/auth-verify", "POST", body);
+    return response.json();
+  }
+
+  async function approveDevice(requestId: string): Promise<void> {
+    await request(`/v1/auth/approve/${requestId}`, "POST");
+  }
+
+  async function refresh(): Promise<{ accessToken: string }> {
+    const response = await request("/v1/auth/refresh", "POST");
     return response.json();
   }
 
@@ -44,8 +70,10 @@ export function getAuthModule(request: MyApiRequest) {
     oauth,
     register,
     login,
-    getMe,
+    getAuthOptions,
+    getRegisterOptions,
+    verifyAuth,
     refresh,
-    google,
+    verifyRegister,
   };
 }

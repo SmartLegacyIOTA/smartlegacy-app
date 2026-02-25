@@ -6,7 +6,8 @@
     "notAvailable": "Biometría no disponible en este dispositivo",
     "notEnrolled": "No hay datos biométricos registrados (FaceID/TouchID/Huella)",
     "failed": "La autenticación biométrica ha fallado",
-    "passkeyError": "Error al crear el acceso seguro. Por favor, inténtalo de nuevo."
+    "passkeyError": "Error al crear el acceso seguro. Por favor, inténtalo de nuevo.",
+    "passkeyCreated": "Acceso seguro creado correctamente."
   },
   "iota": {
     "vaultNotFound": "Bóveda no encontrada on-chain"

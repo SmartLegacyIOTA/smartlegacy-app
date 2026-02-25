@@ -16,8 +16,6 @@ export const useAddPasskey = () => {
       if (user) {
         setUser({
           ...user,
-          hasPasskey: true,
-          securityLevel: "SECURED",
         });
       }
 

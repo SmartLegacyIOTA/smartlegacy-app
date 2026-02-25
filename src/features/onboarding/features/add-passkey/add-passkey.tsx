@@ -5,13 +5,13 @@ import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
 import { SharedButton } from "@/src/components/shared/shared-button";
 import { FeatureCard } from "@/src/features/onboarding/features/components/feature-card";
 import { IntroSection } from "@/src/components/intro-section";
-import { useRnPasskey } from "@/src/framework/hooks/use-rn-passkey";
+import { usePasskeyEnrollment } from "@/src/framework/hooks/auth/use-passkey-enrollment";
 
 const AddPasskey = () => {
   const { t } = useI18nService();
   const theme = useTheme();
 
-  const { onOpenPasskeyProvider, isLoadingActionOpen } = useRnPasskey();
+  const { enrollPasskey, isEnrollLoading } = usePasskeyEnrollment();
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.slBg }]}>
@@ -54,8 +54,8 @@ const AddPasskey = () => {
       <View style={styles.bottomSection}>
         <SharedButton
           variant="primary"
-          onPress={onOpenPasskeyProvider}
-          loading={isLoadingActionOpen}
+          onPress={enrollPasskey}
+          loading={isEnrollLoading}
           leftIcon={{
             type: "icon",
             config: {
