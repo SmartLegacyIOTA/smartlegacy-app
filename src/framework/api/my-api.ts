@@ -1,5 +1,7 @@
 import HttpError from "../utils/errors/http-error";
 import { getAuthModule } from "./endpoints/auth-request";
+import { getVaultModule } from "./endpoints/vault-request";
+import { getDeviceModule } from "./endpoints/device-request";
 
 // Usamos process.env ya que react-native-config no parece estar instalado,
 // o podemos usar variables de entorno de Expo.
@@ -61,6 +63,7 @@ export function buildMyApi(
 
       const errorMessage =
         parsedBody?.error || parsedBody?.message || parsedBody || "error";
+
       throw new HttpError(response.status, response.statusText, errorMessage);
     }
 
@@ -110,7 +113,17 @@ export function buildMyApi(
     return getAuthModule(requestAuth);
   }
 
+  function vault() {
+    return getVaultModule(request);
+  }
+
+  function devices() {
+    return getDeviceModule(request);
+  }
+
   return {
     auth,
+    vault,
+    devices,
   };
 }

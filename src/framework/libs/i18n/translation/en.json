@@ -25,7 +25,8 @@
     "featureInheritanceDesc": "Designate heirs, not key holders",
     "continueWithGoogle": "Continue with Google",
     "or": "or",
-    "termsAndPrivacy": "By continuing, you agree to our Terms and Privacy Policy"
+    "termsAndPrivacy": "By continuing, you agree to our Terms and Privacy Policy",
+    "error": "Login failed. Please try again."
   },
   "home": {
     "screenTitle": "Home",

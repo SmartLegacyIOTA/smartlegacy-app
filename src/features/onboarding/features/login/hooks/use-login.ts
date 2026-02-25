@@ -1,66 +1,51 @@
 import { useSession } from "@/src/framework/providers/session";
 import { useCurrentUser } from "@/src/framework/providers/user";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useMutationOAuth } from "@/src/framework/api/rq/auth/post-oauth";
+import { useGoogleLogin } from "@/src/framework/social-auth/use-google-login";
+import { toastError } from "@/src/framework/lib/toast/toast";
+import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
 
 export const useLogin = () => {
   const { signIn } = useSession();
   const { setUser } = useCurrentUser();
+  const { mutateAsync: oauthMutate } = useMutationOAuth();
+  const { promptAsync } = useGoogleLogin();
+  const { t } = useI18nService();
 
   const [loadingGoogle, setLoadingGoogle] = useState(false);
   const [loadingApple, setLoadingApple] = useState(false);
-  const [token, setToken] = useState();
 
-  // const GOOGLE_WEB_CLIENT_ID = process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID!;
-  const GOOGLE_WEB_CLIENT_ID = "xxxxx.apps.googleusercontent.com";
+  const handleGoogleLogin = async () => {
+    try {
+      setLoadingGoogle(true);
 
-  useEffect(() => {
-    // ensureInit()
-  }, []);
+      const result = await promptAsync();
 
-  const onGoogle = async () => {
-    signIn("123");
-    // TODO: Remove this mock data and use real backend response
-    // Mock user data for testing - simulating a new device that needs authorization
-    setUser({
-      userId: "u_123",
-      hasPasskey: false,
-      trustedDevices: [],
-      securityLevel: "UNSECURED",
-      isNewDevice: false,
-    });
-    // try {
-    //     setLoadingGoogle(true);
-    //     const idToken = await googleLoginGetIdToken({ googleClientId: GOOGLE_WEB_CLIENT_ID });
-    //     if (!idToken) return;
-    //
-    //     const { accessToken, userData } = await exchangeGoogleIdTokenForJwt(idToken);
-    //     setToken(accessToken);
-    //     signIn(accessToken);
-    //
-    //     // Get current device ID
-    //     const currentDeviceId = await getCurrentDeviceId();
-    //
-    //     // Check if current device is trusted
-    //     const isNewDevice = !userData.hasPasskey &&
-    //                        !userData.trustedDevices.includes(currentDeviceId);
-    //
-    //     // Save user data from backend response
-    //     setUser({
-    //         userId: userData.userId,
-    //         hasPasskey: userData.hasPasskey,
-    //         trustedDevices: userData.trustedDevices,
-    //         securityLevel: userData.securityLevel,
-    //         isNewDevice,
-    //         deviceInfo: isNewDevice ? userData.deviceInfo : undefined
-    //     });
-    //
-    //     // Navigation will be handled automatically by _layout.tsx based on user state
-    //     // If isNewDevice is true, user will be shown device-authorization screen
-    // } catch (e: any) {
-    //     Alert.alert('Login error', e?.message ?? 'Unknown');
-    // } finally {
-    //     setLoadingGoogle(false);
-    // }
+      if (result?.type === "success") {
+        const { code } = result.params;
+
+        const response = await oauthMutate({
+          code,
+        });
+
+        if (response.accessToken && response.user) {
+          console.log(response);
+          signIn(response.accessToken);
+          setUser({
+            userId: response.user.id,
+            hasPasskey: response.user.hasPasskey,
+            trustedDevices: [],
+            securityLevel: response.user.securityLevel,
+            isNewDevice: response.user.isNewDevice,
+          });
+        }
+      }
+    } catch {
+      toastError(t("login.error"));
+    } finally {
+      setLoadingGoogle(false);
+    }
   };
 
   const onApple = async () => {
@@ -110,7 +95,7 @@ export const useLogin = () => {
   };
 
   return {
-    onGoogle,
+    onGoogle: handleGoogleLogin,
     onApple,
     loadingGoogle,
     loadingApple,

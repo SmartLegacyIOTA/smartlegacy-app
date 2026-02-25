@@ -25,7 +25,8 @@
     "featureInheritanceDesc": "Designa herederos, no poseedores de llaves",
     "continueWithGoogle": "Continuar con Google",
     "or": "o",
-    "termsAndPrivacy": "Al continuar, aceptas nuestros Términos y Política de Privacidad"
+    "termsAndPrivacy": "Al continuar, aceptas nuestros Términos y Política de Privacidad",
+    "error": "El inicio de sesión ha fallado. Por favor, inténtalo de nuevo."
   },
   "home": {
     "screenTitle": "Inicio",

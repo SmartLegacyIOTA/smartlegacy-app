@@ -1,0 +1,212 @@
+{
+  "OAuthDto": {
+    "type": "object",
+    "properties": {
+      "idToken": {
+        "type": "string",
+        "description": "Google ID Token from OAuth flow"
+      },
+      "publicKey": {
+        "type": "string",
+        "description": "Ed25519 public key (hex). Requerido solo para nuevos usuarios."
+      },
+      "iotaAddress": {
+        "type": "string",
+        "description": "IOTA address (0x...). Requerido solo para nuevos usuarios."
+      },
+      "signature": {
+        "type": "string",
+        "description": "Ed25519 signature del challenge. Requerido solo para nuevos usuarios."
+      },
+      "challenge": {
+        "type": "string",
+        "description": "Challenge firmado. Requerido solo para nuevos usuarios."
+      }
+    },
+    "required": [
+      "idToken"
+    ]
+  },
+  "UserDto": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string"
+      },
+      "email": {
+        "type": "string"
+      },
+      "name": {
+        "type": "object",
+        "nullable": true
+      },
+      "profileImage": {
+        "type": "object",
+        "nullable": true
+      },
+      "iotaAddress": {
+        "type": "string"
+      },
+      "publicKey": {
+        "type": "string"
+      },
+      "status": {
+        "type": "string",
+        "enum": [
+          "ACTIVE",
+          "RECOVERY_MODE",
+          "DECEASED",
+          "LOCKED"
+        ]
+      },
+      "createdAt": {
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "required": [
+      "id",
+      "email",
+      "name",
+      "profileImage",
+      "iotaAddress",
+      "publicKey",
+      "status",
+      "createdAt"
+    ]
+  },
+  "AuthResponseDto": {
+    "type": "object",
+    "properties": {
+      "user": {
+        "$ref": "#/components/schemas/UserDto"
+      },
+      "isNew": {
+        "type": "boolean",
+        "description": "true if the user was just created (register), false if existing (login)"
+      },
+      "accessToken": {
+        "type": "string",
+        "description": "JWT access token (15 min expiry)"
+      }
+    },
+    "required": [
+      "user",
+      "isNew",
+      "accessToken"
+    ]
+  },
+  "RegisterDidDto": {
+    "type": "object",
+    "properties": {
+      "idToken": {
+        "type": "string",
+        "description": "Google ID Token from OAuth flow"
+      },
+      "publicKey": {
+        "type": "string",
+        "description": "Ed25519 public key (hex)"
+      },
+      "iotaAddress": {
+        "type": "string",
+        "description": "IOTA address derived from public key (0x...)"
+      },
+      "signature": {
+        "type": "string",
+        "description": "Ed25519 signature of the challenge"
+      },
+      "challenge": {
+        "type": "string",
+        "description": "Challenge string that was signed"
+      }
+    },
+    "required": [
+      "idToken",
+      "publicKey",
+      "iotaAddress",
+      "signature",
+      "challenge"
+    ]
+  },
+  "GoogleLoginDto": {
+    "type": "object",
+    "properties": {
+      "idToken": {
+        "type": "string",
+        "description": "Google ID Token from OAuth flow"
+      }
+    },
+    "required": [
+      "idToken"
+    ]
+  },
+  "CreateVaultDto": {
+    "type": "object",
+    "properties": {}
+  },
+  "HeartbeatDto": {
+    "type": "object",
+    "properties": {}
+  },
+  "DepositIntentDto": {
+    "type": "object",
+    "properties": {}
+  },
+  "ClaimVaultDto": {
+    "type": "object",
+    "properties": {}
+  },
+  "LinkStartDto": {
+    "type": "object",
+    "properties": {
+      "label": {
+        "type": "string",
+        "description": "Nombre legible del nuevo dispositivo (ej: \"iPhone de Ana\")",
+        "maxLength": 64,
+        "example": "iPhone 15 Pro"
+      }
+    }
+  },
+  "LinkFinishDto": {
+    "type": "object",
+    "properties": {
+      "token": {
+        "type": "string",
+        "description": "Token recibido del Dispositivo A (UUID, TTL 10 min)"
+      },
+      "publicKey": {
+        "type": "string",
+        "description": "Ed25519 public key del nuevo dispositivo (hex)"
+      },
+      "credentialId": {
+        "type": "string",
+        "description": "ID de credencial del Passkey del nuevo dispositivo"
+      },
+      "label": {
+        "type": "string",
+        "description": "Nombre legible del nuevo dispositivo",
+        "example": "iPhone 15 Pro"
+      }
+    },
+    "required": [
+      "token",
+      "publicKey",
+      "credentialId",
+      "label"
+    ]
+  },
+  "RenameDeviceDto": {
+    "type": "object",
+    "properties": {
+      "label": {
+        "type": "string",
+        "description": "Nuevo nombre del dispositivo",
+        "maxLength": 64,
+        "example": "iPad Air"
+      }
+    },
+    "required": [
+      "label"
+    ]
+  }
+}

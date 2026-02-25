@@ -6,6 +6,7 @@ import {
 import { SplashScreen, Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import "react-native-reanimated";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { useColorScheme } from "@/src/framework/hooks/use-color-scheme";
@@ -18,6 +19,7 @@ import {
 } from "@/src/framework/libs/i18n/i18n-service";
 import { useTheme } from "@/src/framework/theme/use-theme";
 import { MyApiProvider } from "@/src/framework/api/api-provider";
+import { ToastProvider } from "@/src/framework/providers/ToastProvider";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -37,24 +39,35 @@ export default function Root() {
   SplashScreen.preventAutoHideAsync();
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <SessionProvider>
-        <ApiWrapper>
-          <UserProvider>
-            <I18nProvider>
-              <RootNavigator />
-            </I18nProvider>
-          </UserProvider>
-        </ApiWrapper>
-      </SessionProvider>
-    </QueryClientProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <QueryClientProvider client={queryClient}>
+        <ToastProvider>
+          <SessionProvider>
+            <UserProvider>
+              <ApiWrapper>
+                <I18nProvider>
+                  <RootNavigator />
+                </I18nProvider>
+              </ApiWrapper>
+            </UserProvider>
+          </SessionProvider>
+        </ToastProvider>
+      </QueryClientProvider>
+    </GestureHandlerRootView>
   );
 }
 
 function ApiWrapper({ children }: { children: React.ReactNode }) {
   const { session, signOut } = useSession();
+  const { setUser } = useCurrentUser();
   return (
-    <MyApiProvider token={session || ""} logoutFn={signOut}>
+    <MyApiProvider
+      token={session || ""}
+      logoutFn={() => {
+        signOut();
+        setUser(null);
+      }}
+    >
       {children}
     </MyApiProvider>
   );
