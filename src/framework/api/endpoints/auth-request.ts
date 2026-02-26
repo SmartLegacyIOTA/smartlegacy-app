@@ -1,12 +1,12 @@
 import { MyApiRequest } from "../my-api";
 import {
   AuthResponseDto,
+  BackendAuthVerifyDto,
   GoogleLoginDto,
   OAuthDto,
   RegisterDidDto,
   UserDto,
   WebAuthnChallengeDto,
-  WebAuthnVerifyDto,
 } from "../types/auth-types";
 
 export function getAuthModule(request: MyApiRequest) {
@@ -42,7 +42,7 @@ export function getAuthModule(request: MyApiRequest) {
   }
 
   async function verifyRegister(
-    body: WebAuthnVerifyDto,
+    body: BackendAuthVerifyDto,
   ): Promise<AuthResponseDto> {
     const response = await request(
       "/v1/passkeys/register-verify",
@@ -52,7 +52,9 @@ export function getAuthModule(request: MyApiRequest) {
     return response.json();
   }
 
-  async function verifyAuth(body: WebAuthnVerifyDto): Promise<AuthResponseDto> {
+  async function verifyAuth(
+    body: BackendAuthVerifyDto,
+  ): Promise<AuthResponseDto> {
     const response = await request("/v1/passkeys/auth-verify", "POST", body);
     return response.json();
   }

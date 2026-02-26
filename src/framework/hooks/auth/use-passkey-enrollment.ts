@@ -8,6 +8,7 @@ import { useState } from "react";
 import { toastError, toastSuccess } from "@/src/framework/lib/toast/toast";
 import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
 import { logger } from "@/src/framework/utils/logger/logger";
+import { toBackendAuthVerifyDto } from "@/src/framework/api/types/auth-types";
 
 export const usePasskeyEnrollment = () => {
   const api = useMyApi();
@@ -43,7 +44,11 @@ export const usePasskeyEnrollment = () => {
       });
 
       // 3. Verificar y registrar en backend
-      const response = await api.auth().verifyRegister(attestation as any);
+      const mappedBody = toBackendAuthVerifyDto({
+        challengeId: challengeData.challengeId,
+        assertion: attestation as any,
+      });
+      const response = await api.auth().verifyRegister(mappedBody);
 
       if (response.user) {
         // 4. Guardar credentialId localmente

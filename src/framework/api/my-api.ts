@@ -67,6 +67,12 @@ export function buildMyApi(
       const errorMessage =
         parsedBody?.error || parsedBody?.message || parsedBody || "error";
 
+      log.error("API Request Auth Error", {
+        status: response.status,
+        url,
+        errorMessage,
+      });
+
       throw new HttpError(response.status, response.statusText, errorMessage);
     }
 
