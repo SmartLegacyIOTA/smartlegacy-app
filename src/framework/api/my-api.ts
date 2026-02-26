@@ -121,7 +121,7 @@ export function buildMyApi(
   }
 
   function auth() {
-    return getAuthModule(requestAuth);
+    return getAuthModule(requestAuth, request);
   }
 
   function vault() {

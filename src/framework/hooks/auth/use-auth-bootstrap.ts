@@ -42,10 +42,7 @@ export const useAuthBootstrap = () => {
 
         // 2. Ejecutar Passkey Get
         const assertion = await provider.get({
-          rpId:
-            challengeData.rpId ||
-            process.env.EXPO_PUBLIC_IOTA_RPID ||
-            "qa-api.smartlegacy.tech",
+          rpId: challengeData.rpId,
           challengeB64u: challengeData.challenge,
           allowCredentialIdsB64u: [stored.credentialIdB64u],
         });
@@ -67,6 +64,7 @@ export const useAuthBootstrap = () => {
           setUser({
             ...response.user,
             trustedDevices: [],
+            nextStep: "APP",
           });
         } else {
           throw new Error("Invalid response from server");
@@ -80,6 +78,6 @@ export const useAuthBootstrap = () => {
       }
     };
 
-    bootstrap();
+    bootstrap().catch();
   }, [api, setUser, signIn, t]);
 };
