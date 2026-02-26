@@ -17,6 +17,8 @@ import {
   bytesToB64,
 } from "@/src/framework/libs/rn-passkey/weauthn-b64";
 
+const log = logger.scope("PASSKEY");
+
 export const usePasskeyEnrollment = () => {
   const api = useMyApi();
   const { setUser } = useAuth();
@@ -31,7 +33,10 @@ export const usePasskeyEnrollment = () => {
       const challengeData = await api.auth().getRegisterOptions();
 
       if (!challengeData.user) {
-        throw new Error("No user data in challenge");
+        log.error("No user data in challenge");
+        toastError(t("biometric.passkeyError"));
+        setIsEnrollLoading(false);
+        return;
       }
 
       const provider = new RNPasskeyProvider();
@@ -49,8 +54,12 @@ export const usePasskeyEnrollment = () => {
 
       // 3. Verificar y registrar en backend
       const pkB64u = attestation.response.getPublicKey?.();
-      if (!pkB64u)
-        throw new Error("No getPublicKey() from registration response");
+      if (!pkB64u) {
+        log.error("No getPublicKey() from registration response");
+        toastError(t("biometric.passkeyError"));
+        setIsEnrollLoading(false);
+        return;
+      }
 
       const pub33 = normalizePasskeyPublicKeyToCompressed33(
         b64urlToBytes(pkB64u),
@@ -62,12 +71,11 @@ export const usePasskeyEnrollment = () => {
         publicKey: bytesToB64(pub33),
         label: Device.deviceName || "Unknown Device",
       });
+
       const response = await api.auth().verifyRegister(mappedBody);
 
-      // 4. Guardar credentialId localmente sin sobreescribir las anteriores
       await addStoredPasskey(attestation.rawId, pkB64u);
-      console.log("response", response.user);
-      console.log("response", response.user.nextStep);
+
       if (response.user) {
         setUser({
           ...response.user,
@@ -79,7 +87,6 @@ export const usePasskeyEnrollment = () => {
       }
       return;
     } catch (error: any) {
-      const log = logger.scope("PASSKEY");
       log.error("Enrollment error", { message: error?.message });
       toastError(t("biometric.passkeyError"));
       return;
