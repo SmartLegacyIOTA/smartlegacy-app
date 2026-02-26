@@ -11,6 +11,7 @@ import { useTheme } from "@/src/framework/theme/use-theme";
 import { useCameraPermissions } from "expo-camera";
 import { router, useLocalSearchParams } from "expo-router";
 import { navigationCallbackRegistry } from "@/src/framework/utils/navigation-callback-registry";
+import { logger } from "@/src/framework/utils/logger/logger";
 
 const ApproveThisDeviceInfo = () => {
   const { t } = useI18nService();
@@ -27,7 +28,9 @@ const ApproveThisDeviceInfo = () => {
   }, [initialScannedData]);
 
   const handleScannedData = (data: string) => {
-    console.log("Scanned Data received:", data);
+    logger
+      .scope("DEVICE_AUTH")
+      .info("Scanned data received", { hasData: !!data });
     // Aquí se puede llamar a la lógica de autorización con los datos escaneados
   };
 

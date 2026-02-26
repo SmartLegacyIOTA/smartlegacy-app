@@ -2,6 +2,9 @@ import HttpError from "../utils/errors/http-error";
 import { getAuthModule } from "./endpoints/auth-request";
 import { getVaultModule } from "./endpoints/vault-request";
 import { getDeviceModule } from "./endpoints/device-request";
+import { logger } from "@/src/framework/utils/logger/logger";
+
+const log = logger.scope("API");
 
 // Usamos process.env ya que react-native-config no parece estar instalado,
 // o podemos usar variables de entorno de Expo.
@@ -99,9 +102,11 @@ export function buildMyApi(
       const errorMessage =
         parsedBody?.error || parsedBody?.message || parsedBody || "error";
 
-      console.error(
-        `🚨 Error: Status code ${response.status} for URL: ${url}  errorMessage: ${errorMessage} 🚨`,
-      );
+      log.error("API Request Error", {
+        status: response.status,
+        url,
+        errorMessage,
+      });
 
       throw new HttpError(response.status, response.statusText, errorMessage);
     }

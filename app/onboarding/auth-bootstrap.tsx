@@ -11,6 +11,9 @@ import { useSession } from "@/src/framework/providers/session";
 import { useCurrentUser } from "@/src/framework/providers/user";
 import { toastError } from "@/src/framework/lib/toast/toast";
 import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
+import { logger } from "@/src/framework/utils/logger/logger";
+
+const log = logger.scope("BOOTSTRAP");
 
 const AuthBootstrap = () => {
   const { t } = useI18nService();
@@ -28,18 +31,19 @@ const AuthBootstrap = () => {
     const bootstrap = async () => {
       try {
         const stored = await loadStoredPasskey();
-        console.log(stored);
+        log.debug("Stored passkey loaded", { hasStored: !!stored });
 
         if (!stored) {
-          console.info(
-            "[AuthBootstrap] No stored credentials, redirecting to sign-in",
-          );
+          log.info("No stored credentials, redirecting to sign-in");
           router.replace("/onboarding/sign-in");
           return;
         }
 
         const challengeData = await api.auth().getAuthOptions();
-        console.info("challengeData", challengeData);
+        log.info("Auth options received", {
+          rpId: challengeData.rpId,
+          userId: challengeData.userId,
+        });
         const provider = new RNPasskeyProvider();
 
         // 2. Ejecutar Passkey Get
@@ -56,7 +60,10 @@ const AuthBootstrap = () => {
         const response = await api.auth().verifyAuth(assertion as any);
 
         if (response.accessToken && response.user) {
-          console.info("VerifyAuth Response:", response);
+          log.info("VerifyAuth success", {
+            userId: response.user.id,
+            isNew: response.isNew,
+          });
           signIn(response.accessToken);
           setUser({
             ...response.user,
@@ -65,8 +72,10 @@ const AuthBootstrap = () => {
         } else {
           throw new Error("Invalid response from server");
         }
-      } catch (error) {
-        console.error("[AuthBootstrap] Bootstrap error:", error);
+      } catch (error: any) {
+        log.error("Bootstrap error", {
+          message: error?.message,
+        });
         toastError(t("login.bootstrapError"));
         router.replace("/onboarding/sign-in");
       }

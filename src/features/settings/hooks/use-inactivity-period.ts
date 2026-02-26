@@ -1,6 +1,7 @@
 import { useCallback, useState } from "react";
 import { router } from "expo-router";
 import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
+import { logger } from "@/src/framework/utils/logger/logger";
 
 export interface PeriodOption {
   value: number;
@@ -31,7 +32,9 @@ export function useInactivityPeriod(initialDays: number) {
     if (!hasChanges) return;
 
     // TODO: Save to backend/storage
-    console.log("Saving inactivity period:", selectedDays);
+    logger
+      .scope("SETTINGS")
+      .info("Saving inactivity period", { days: selectedDays });
 
     // TODO: Update the value in the parent screen (use global state or callback)
 

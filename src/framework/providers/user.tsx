@@ -7,6 +7,7 @@ import {
 } from "react";
 import { useStorageState } from "@/src/framework/hooks/use-storage";
 import { UserDto } from "../api/types/auth-types";
+import { logger } from "@/src/framework/utils/logger/logger";
 
 export interface UserData extends UserDto {
   trustedDevices: string[];
@@ -40,8 +41,9 @@ export function UserProvider({ children }: PropsWithChildren) {
     if (storedUser) {
       try {
         setUserState(JSON.parse(storedUser));
-      } catch (error) {
-        console.error("Error parsing stored user:", error);
+      } catch (error: any) {
+        const log = logger.scope("USER");
+        log.error("Error parsing stored user", { message: error?.message });
         setUserState(null);
       }
     }

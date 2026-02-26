@@ -4,6 +4,7 @@ import { router } from "expo-router";
 import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
 import { useSession } from "@/src/framework/providers/session";
 import { useCurrentUser } from "@/src/framework/providers/user";
+import { logger } from "@/src/framework/utils/logger/logger";
 
 export interface UserData {
   name: string;
@@ -52,7 +53,7 @@ export function useSettings() {
           style: "destructive",
           onPress: () => {
             // TODO: API call to reset timer
-            console.log("Reset timer");
+            logger.scope("SETTINGS").info("Reset inactivity timer");
           },
         },
       ],

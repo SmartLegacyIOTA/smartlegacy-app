@@ -8,6 +8,7 @@ import { useTheme } from "@/src/framework/theme/use-theme";
 
 import { router, useLocalSearchParams } from "expo-router";
 import { navigationCallbackRegistry } from "@/src/framework/utils/navigation-callback-registry";
+import { logger } from "@/src/framework/utils/logger/logger";
 
 const QrCode = () => {
   const theme = useTheme();
@@ -26,7 +27,7 @@ const QrCode = () => {
       }
     }
 
-    console.error("No onCompleteId callback find!");
+    logger.scope("QR").warn("No onCompleteId callback found");
   };
 
   return (

@@ -1,5 +1,6 @@
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { useEffect } from "react";
+import { logger } from "@/src/framework/utils/logger/logger";
 
 export function useGoogleLogin() {
   useEffect(() => {
@@ -15,8 +16,10 @@ export function useGoogleLogin() {
       await GoogleSignin.hasPlayServices();
 
       return await GoogleSignin.signIn();
-    } catch (error) {
-      console.error("ERROR LOGIN WITH GOOGLE", error);
+    } catch (error: any) {
+      logger
+        .scope("OAUTH")
+        .error("Google Sign-In failed", { message: error?.message });
       throw error;
     }
   };

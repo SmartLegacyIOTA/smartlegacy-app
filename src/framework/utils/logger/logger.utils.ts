@@ -8,11 +8,8 @@ const LEVEL_RANK: Record<Level, number> = {
   error: 40,
 };
 
-// Ajusta el nivel por entorno
 const DEFAULT_LEVEL: Level = __DEV__ ? "debug" : "info";
 
-// Si quieres forzar nivel por EAS env:
-// EXPO_PUBLIC_LOG_LEVEL=debug|info|warn|error
 const LOG_LEVEL =
   ((process.env.EXPO_PUBLIC_LOG_LEVEL as Level) || DEFAULT_LEVEL) ??
   DEFAULT_LEVEL;
@@ -29,23 +26,28 @@ function shouldLog(level: Level) {
   return LEVEL_RANK[level] >= LEVEL_RANK[LOG_LEVEL];
 }
 
-function safeJson(value: any) {
-  try {
-    return JSON.stringify(
-      value,
-      (_k, v) => (typeof v === "bigint" ? v.toString() : v),
-      2,
-    );
-  } catch (e) {
-    return `<<unserializable meta: ${String(e)}>>`;
-  }
-}
-
 function formatHeader(level: Level, scope?: string) {
   const lvl = level.toUpperCase().padEnd(5, " ");
   const tag = scope ? `${app}/${scope}` : app;
   return `[${now()}] ${lvl} ${tag}`;
 }
+
+function formatMeta(meta: unknown): string | null {
+  if (meta == null) return null;
+
+  if (meta instanceof Error) {
+    return meta.stack || meta.message;
+  }
+
+  if (typeof meta === "string") return meta;
+
+  try {
+    return JSON.stringify(meta, null, 2);
+  } catch {
+    return String(meta);
+  }
+}
+const USE_CONSOLE_ERROR = !__DEV__;
 
 export function print(
   level: Level,
@@ -53,30 +55,32 @@ export function print(
   msg: string,
   meta?: Meta,
 ) {
-  if (!shouldLog(level)) return;
+  try {
+    if (!shouldLog(level)) return;
 
-  const header = formatHeader(level, scope);
+    const header = formatHeader(level, scope);
+    const line = `${header} — ${msg}`;
 
-  // Mensaje siempre en una línea
-  const line = `${header} — ${msg}`;
-
-  // Objetos en bloque separado para que Metro no lo mezcle
-  if (meta && Object.keys(meta).length > 0) {
-    const metaBlock = safeJson(meta);
+    const metaBlock = formatMeta(meta);
 
     if (level === "error") {
-      console.error(line);
-      console.error(metaBlock);
-    } else if (level === "warn") {
-      console.warn(line);
-      console.warn(metaBlock);
-    } else {
-      console.log(line);
-      console.log(metaBlock);
+      if (USE_CONSOLE_ERROR) {
+        console.error(line);
+        if (metaBlock && metaBlock !== "null") console.error(metaBlock);
+      } else {
+        console.log(line); // en dev: no RedBox
+        if (metaBlock && metaBlock !== "null") console.log(metaBlock);
+      }
+      return;
     }
-  } else {
-    if (level === "error") console.error(line);
-    else if (level === "warn") console.warn(line);
-    else console.log(line);
-  }
+
+    if (level === "warn") {
+      console.warn(line);
+      if (metaBlock && metaBlock !== "null") console.warn(metaBlock);
+      return;
+    }
+
+    console.log(line);
+    if (metaBlock && metaBlock !== "null") console.log(metaBlock);
+  } catch {}
 }

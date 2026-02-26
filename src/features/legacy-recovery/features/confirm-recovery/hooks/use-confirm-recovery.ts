@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import { Alert } from "react-native";
 import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
+import { logger } from "@/src/framework/utils/logger/logger";
 
 // Mock data - Should match the data from legacy-recovery
 const MOCK_DATA = {
@@ -18,7 +19,7 @@ export function useConfirmRecovery() {
 
   const handleConfirmRecovery = useCallback(() => {
     // TODO: Implement actual recovery process
-    console.log("Confirming recovery...");
+    logger.scope("RECOVERY").info("Confirming recovery");
 
     Alert.alert(
       t("confirmRecovery.successTitle"),

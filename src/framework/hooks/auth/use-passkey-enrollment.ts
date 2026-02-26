@@ -1,4 +1,3 @@
-import * as SecureStore from "expo-secure-store";
 import {
   RNPasskeyProvider,
   saveStoredPasskey,
@@ -8,24 +7,11 @@ import { useCurrentUser } from "@/src/framework/providers/user";
 import { useState } from "react";
 import { toastError, toastSuccess } from "@/src/framework/lib/toast/toast";
 import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
-import {
-  bytesToB64,
-  bytesToB64url,
-} from "@/src/framework/libs/rn-passkey/weauthn-b64";
-
-async function generateChallengeBytes(): Promise<Uint8Array> {
-  // demo simple: 32 bytes random
-  const rnd = new Uint8Array(32);
-  // si tienes polyfill crypto.getRandomValues, úsalo:
-  // crypto.getRandomValues(rnd)
-  // si no, usa expo-crypto o similar
-  for (let i = 0; i < rnd.length; i++) rnd[i] = Math.floor(Math.random() * 256);
-  return rnd;
-}
+import { logger } from "@/src/framework/utils/logger/logger";
 
 export const usePasskeyEnrollment = () => {
   const api = useMyApi();
-  const { user, setUser } = useCurrentUser();
+  const { setUser } = useCurrentUser();
   const { t } = useI18nService();
   const [isEnrollLoading, setIsEnrollLoading] = useState(false);
 
@@ -79,8 +65,9 @@ export const usePasskeyEnrollment = () => {
         return true;
       }
       return false;
-    } catch (error) {
-      console.error("Enrollment error:", error);
+    } catch (error: any) {
+      const log = logger.scope("PASSKEY");
+      log.error("Enrollment error", { message: error?.message });
       toastError(t("biometric.passkeyError"));
       return false;
     } finally {

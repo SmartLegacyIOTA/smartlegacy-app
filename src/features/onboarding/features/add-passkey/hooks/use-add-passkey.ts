@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useCurrentUser } from "@/src/framework/providers/user";
+import { logger } from "@/src/framework/utils/logger/logger";
 
 export const useAddPasskey = () => {
   const { user, setUser } = useCurrentUser();
@@ -21,8 +22,10 @@ export const useAddPasskey = () => {
 
       // Navigation will be handled automatically by _layout.tsx
       // when user state changes to SECURED
-    } catch (error) {
-      console.error("Error creating rn-passkey:", error);
+    } catch (error: any) {
+      logger
+        .scope("ONBOARDING/ADD_PASSKEY")
+        .error("Error creating passkey", { message: error?.message });
     } finally {
       setLoading(false);
     }
@@ -30,7 +33,7 @@ export const useAddPasskey = () => {
 
   const onWhyNeeded = () => {
     // TODO: Show modal or navigate to explanation screen
-    console.log("Why is this needed?");
+    logger.scope("ONBOARDING/ADD_PASSKEY").info("Why is this needed tapped");
   };
 
   return {

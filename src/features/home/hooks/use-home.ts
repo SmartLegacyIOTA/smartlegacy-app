@@ -1,9 +1,10 @@
 import { useCallback } from "react";
 import { router } from "expo-router";
+import { logger } from "@/src/framework/utils/logger/logger";
 
 export function useHome() {
   const handleNotificationPress = useCallback(() => {
-    console.log("Notifications pressed");
+    logger.scope("HOME").info("Notifications pressed");
   }, []);
 
   const handleManageGuardian = useCallback(() => {

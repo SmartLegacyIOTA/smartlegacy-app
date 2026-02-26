@@ -3,6 +3,7 @@ import { useCurrentUser } from "@/src/framework/providers/user";
 import { useState } from "react";
 import { useMutationOAuth } from "@/src/framework/api/rq/auth/post-oauth";
 import { useGoogleLogin } from "@/src/framework/social-auth/use-google-login";
+import { logger } from "@/src/framework/utils/logger/logger";
 
 export const useLogin = () => {
   const { signIn } = useSession();
@@ -26,7 +27,9 @@ export const useLogin = () => {
         });
 
         if (response.accessToken && response.user) {
-          console.log(response);
+          logger
+            .scope("LOGIN")
+            .debug("OAuth success", { userId: response.user.id });
           signIn(response.accessToken);
           setUser({
             ...response.user,
