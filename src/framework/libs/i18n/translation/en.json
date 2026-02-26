@@ -28,7 +28,8 @@
     "continueWithGoogle": "Continue with Google",
     "or": "or",
     "termsAndPrivacy": "By continuing, you agree to our Terms and Privacy Policy",
-    "error": "Login failed. Please try again."
+    "error": "Login failed. Please try again.",
+    "bootstrapError": "Automatic login failed. Please sign in to continue."
   },
   "home": {
     "screenTitle": "Home",

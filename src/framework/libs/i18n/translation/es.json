@@ -28,7 +28,8 @@
     "continueWithGoogle": "Continuar con Google",
     "or": "o",
     "termsAndPrivacy": "Al continuar, aceptas nuestros Términos y Política de Privacidad",
-    "error": "El inicio de sesión ha fallado. Por favor, inténtalo de nuevo."
+    "error": "El inicio de sesión ha fallado. Por favor, inténtalo de nuevo.",
+    "bootstrapError": "Error al iniciar sesión automáticamente. Identifícate para continuar."
   },
   "home": {
     "screenTitle": "Inicio",

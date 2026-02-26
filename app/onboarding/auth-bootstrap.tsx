@@ -9,8 +9,11 @@ import { useTheme } from "@/src/framework/theme/use-theme";
 import { useMyApi } from "@/src/framework/api/api-provider";
 import { useSession } from "@/src/framework/providers/session";
 import { useCurrentUser } from "@/src/framework/providers/user";
+import { toastError } from "@/src/framework/lib/toast/toast";
+import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
 
 const AuthBootstrap = () => {
+  const { t } = useI18nService();
   const theme = useTheme();
   const isMounted = useRef(false);
   const api = useMyApi();
@@ -59,15 +62,18 @@ const AuthBootstrap = () => {
             ...response.user,
             trustedDevices: [],
           });
+        } else {
+          throw new Error("Invalid response from server");
         }
       } catch (error) {
         console.error("[AuthBootstrap] Bootstrap error:", error);
+        toastError(t("login.bootstrapError"));
         router.replace("/onboarding/sign-in");
       }
     };
 
     bootstrap().catch();
-  }, [api, setUser, signIn]);
+  }, [api, setUser, signIn, t]);
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.slBg }]}>
