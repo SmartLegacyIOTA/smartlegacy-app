@@ -3,7 +3,7 @@ import {
   saveStoredPasskey,
 } from "@/src/framework/libs/rn-passkey";
 import { useMyApi } from "@/src/framework/api/api-provider";
-import { useCurrentUser } from "@/src/framework/providers/user";
+import { useAuth } from "@/src/framework/providers/auth";
 import { useState } from "react";
 import { toastError, toastSuccess } from "@/src/framework/lib/toast/toast";
 import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
@@ -19,7 +19,7 @@ import {
 
 export const usePasskeyEnrollment = () => {
   const api = useMyApi();
-  const { setUser } = useCurrentUser();
+  const { setUser } = useAuth();
   const { t } = useI18nService();
   const [isEnrollLoading, setIsEnrollLoading] = useState(false);
 

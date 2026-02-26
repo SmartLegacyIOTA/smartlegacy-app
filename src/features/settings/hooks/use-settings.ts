@@ -2,8 +2,7 @@ import { useCallback, useState } from "react";
 import { Alert } from "react-native";
 import { router } from "expo-router";
 import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
-import { useSession } from "@/src/framework/providers/session";
-import { useCurrentUser } from "@/src/framework/providers/user";
+import { useAuth } from "@/src/framework/providers/auth";
 import { logger } from "@/src/framework/utils/logger/logger";
 
 export interface UserData {
@@ -13,8 +12,7 @@ export interface UserData {
 
 export function useSettings() {
   const { t } = useI18nService();
-  const { signOut } = useSession();
-  const { setUser } = useCurrentUser();
+  const { closeAndRemoveSession } = useAuth();
 
   // Mock user data - replace with actual data source
   const [userData] = useState<UserData>({
@@ -70,12 +68,11 @@ export function useSettings() {
         text: t("settings.signOut"),
         style: "destructive",
         onPress: () => {
-          signOut();
-          setUser(null);
+          closeAndRemoveSession();
         },
       },
     ]);
-  }, [signOut, setUser, t]);
+  }, [closeAndRemoveSession, t]);
 
   return {
     userData,

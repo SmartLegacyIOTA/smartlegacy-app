@@ -1,12 +1,10 @@
 import { useState } from "react";
-import { useCurrentUser } from "@/src/framework/providers/user";
-import { useSession } from "@/src/framework/providers/session";
+import { useAuth } from "@/src/framework/providers/auth";
 import { router } from "expo-router";
 import { logger } from "@/src/framework/utils/logger/logger";
 
 export const useDeviceAuthorization = () => {
-  const { user, setUser } = useCurrentUser();
-  const { signOut } = useSession();
+  const { user, closeAndRemoveSession } = useAuth();
   const [loading, setLoading] = useState(false);
 
   const onAuthorize = async () => {
@@ -40,8 +38,7 @@ export const useDeviceAuthorization = () => {
   const onReject = () => {
     try {
       setLoading(true);
-      signOut();
-      setUser(null);
+      closeAndRemoveSession();
 
       // Navigate to login screen
       // router.replace('/onboarding/sign-in');

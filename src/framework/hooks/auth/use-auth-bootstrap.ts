@@ -5,8 +5,7 @@ import {
   RNPasskeyProvider,
 } from "@/src/framework/libs/rn-passkey";
 import { useMyApi } from "@/src/framework/api/api-provider";
-import { useSession } from "@/src/framework/providers/session";
-import { useCurrentUser } from "@/src/framework/providers/user";
+import { useAuth } from "@/src/framework/providers/auth";
 import { toastError } from "@/src/framework/lib/toast/toast";
 import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
 import { logger } from "@/src/framework/utils/logger/logger";
@@ -18,8 +17,7 @@ export const useAuthBootstrap = () => {
   const { t } = useI18nService();
   const isMounted = useRef(false);
   const api = useMyApi();
-  const { signIn } = useSession();
-  const { setUser } = useCurrentUser();
+  const { signIn, setUser } = useAuth();
 
   useEffect(() => {
     if (isMounted.current) return;

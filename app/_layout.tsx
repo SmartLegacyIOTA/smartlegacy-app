@@ -11,8 +11,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { useColorScheme } from "@/src/framework/hooks/use-color-scheme";
 import { MeThemeProvider } from "@/src/framework/theme/theme-context";
-import { SessionProvider, useSession } from "@/src/framework/providers/session";
-import { UserProvider, useCurrentUser } from "@/src/framework/providers/user";
+import { AuthProvider, useAuth } from "@/src/framework/providers/auth";
 import {
   I18nProvider,
   useI18nService,
@@ -20,6 +19,7 @@ import {
 import { useTheme } from "@/src/framework/theme/use-theme";
 import { MyApiProvider } from "@/src/framework/api/api-provider";
 import { ToastProvider } from "@/src/framework/providers/ToastProvider";
+import { useQueryGetMe } from "@/src/framework/api/rq/auth/get-me";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -42,15 +42,13 @@ export default function Root() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <QueryClientProvider client={queryClient}>
         <ToastProvider>
-          <SessionProvider>
-            <UserProvider>
-              <ApiWrapper>
-                <I18nProvider>
-                  <RootNavigator />
-                </I18nProvider>
-              </ApiWrapper>
-            </UserProvider>
-          </SessionProvider>
+          <AuthProvider>
+            <ApiWrapper>
+              <I18nProvider>
+                <RootNavigator />
+              </I18nProvider>
+            </ApiWrapper>
+          </AuthProvider>
         </ToastProvider>
       </QueryClientProvider>
     </GestureHandlerRootView>
@@ -58,14 +56,12 @@ export default function Root() {
 }
 
 function ApiWrapper({ children }: { children: React.ReactNode }) {
-  const { session, signOut } = useSession();
-  const { setUser } = useCurrentUser();
+  const { token, closeAndRemoveSession } = useAuth();
   return (
     <MyApiProvider
-      token={session || ""}
+      token={token}
       logoutFn={() => {
-        signOut();
-        setUser(null);
+        closeAndRemoveSession();
       }}
     >
       {children}
@@ -74,24 +70,23 @@ function ApiWrapper({ children }: { children: React.ReactNode }) {
 }
 
 const RootNavigator = () => {
-  const { session, isLoading: sessionLoading } = useSession();
-  const { user, isLoading: userLoading } = useCurrentUser();
+  const { token, user, isLoading } = useAuth();
+  useQueryGetMe(!!token);
+
   const colorScheme = useColorScheme();
   const theme = useTheme();
   const { t } = useI18nService();
-
-  const isLoading = sessionLoading || userLoading;
 
   if (isLoading) return null;
 
   SplashScreen.hide();
 
   // User has no session -> show bootstrap
-  const shouldShowBootstrap = !session || user?.nextStep === "SIGN_IN";
+  const shouldShowBootstrap = !token;
 
-  const showApp = user?.nextStep === "APP";
-  const showCreatePasskey = user?.nextStep === "CREATE_PASSKEY";
-  const showDeviceApproval = user?.nextStep === "DEVICE_APPROVAL";
+  const showApp = !!token && user?.nextStep === "APP";
+  const showCreatePasskey = !!token && user?.nextStep === "CREATE_PASSKEY";
+  const showDeviceApproval = !!token && user?.nextStep === "DEVICE_APPROVAL";
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
@@ -156,10 +151,10 @@ const RootNavigator = () => {
             />
           </Stack.Protected>
 
-          <Stack.Screen
-            name="modal"
-            options={{ presentation: "modal", title: "Modal" }}
-          />
+          {/*<Stack.Screen*/}
+          {/*  name="modal"*/}
+          {/*  options={{ presentation: "modal", title: "Modal" }}*/}
+          {/*/>*/}
 
           <Stack.Screen
             name="qr-code"
