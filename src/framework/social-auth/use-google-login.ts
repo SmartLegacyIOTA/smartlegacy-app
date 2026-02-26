@@ -13,7 +13,6 @@ export function useGoogleLogin() {
   const googleSignIn = async () => {
     try {
       await GoogleSignin.hasPlayServices();
-      // await GoogleSignin.signOut();
 
       return await GoogleSignin.signIn();
     } catch (error) {

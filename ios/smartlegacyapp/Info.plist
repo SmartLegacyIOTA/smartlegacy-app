@@ -9,7 +9,7 @@
     <key>CFBundleDevelopmentRegion</key>
     <string>$(DEVELOPMENT_LANGUAGE)</string>
     <key>CFBundleDisplayName</key>
-    <string>smart-legacy-app</string>
+    <string>Smart Legacy</string>
     <key>CFBundleExecutable</key>
     <string>$(EXECUTABLE_NAME)</string>
     <key>CFBundleIdentifier</key>
@@ -42,6 +42,12 @@
         <key>CFBundleURLSchemes</key>
         <array>
           <string>exp+smart-legacy-app</string>
+        </array>
+      </dict>
+      <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>com.googleusercontent.apps.505434504889-e8akne6h03qbk8h99ofq7eccnn0h2669</string>
         </array>
       </dict>
     </array>

@@ -3,7 +3,6 @@ import { View, ActivityIndicator, StyleSheet } from "react-native";
 import { router } from "expo-router";
 import {
   loadStoredPasskey,
-  clearStoredPasskey,
   RNPasskeyProvider,
 } from "@/src/framework/libs/rn-passkey";
 import { useTheme } from "@/src/framework/theme/use-theme";
@@ -67,7 +66,7 @@ const AuthBootstrap = () => {
       }
     };
 
-    bootstrap();
+    bootstrap().catch();
   }, [api, setUser, signIn]);
 
   return (
