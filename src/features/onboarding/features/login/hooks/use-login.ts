@@ -33,7 +33,7 @@ export const useLogin = () => {
 
   const checkStoredPasskey = async () => {
     const stored = await loadStoredPasskey();
-    setHasStoredPasskey(!!stored);
+    setHasStoredPasskey(!!stored?.credentialIdsB64u.length);
   };
 
   const handleGoogleLogin = async () => {
@@ -48,13 +48,20 @@ export const useLogin = () => {
           idToken: idToken,
         });
 
-        if (response.accessToken && response.nextStep) {
-          log.debug("OAuth success", { nextStep: response.nextStep });
-          signIn(response.accessToken);
-          setUser({
-            ...response,
-            trustedDevices: [],
-          });
+        if ("requiresStrongAuth" in response && response.requiresStrongAuth) {
+          log.info("Strong auth required, triggering passkey verification");
+          // Reutilizamos la lógica de passkey login pero con el challenge que el back debería haber preparado o preparará
+          await handlePasskeyLogin();
+          return;
+        } else if ("accessToken" in response) {
+          if (response.accessToken && response.nextStep) {
+            log.debug("OAuth success", { nextStep: response.nextStep });
+            signIn(response.accessToken);
+            setUser({
+              ...response,
+              trustedDevices: [],
+            });
+          }
         }
       }
     } finally {
@@ -68,7 +75,7 @@ export const useLogin = () => {
       const stored = await loadStoredPasskey();
       log.debug("Stored passkey loaded", { hasStored: !!stored });
 
-      if (!stored) {
+      if (!stored?.credentialIdsB64u.length) {
         log.info("No stored credentials, redirecting to sign-in");
         toastError(t("login.passkeyLoginError"));
         return;
@@ -78,11 +85,10 @@ export const useLogin = () => {
 
       const provider = new RNPasskeyProvider();
 
-      // 2. Ejecutar Passkey Get
+      // 2. Ejecutar Passkey Get con todos los IDs almacenados
       const assertion = await provider.get({
         rpId: challengeData.rpId,
         challengeB64u: challengeData.challenge,
-        allowCredentialIdsB64u: undefined,
       });
 
       // 3. Verificar en backend

@@ -16,7 +16,9 @@ export function getAuthModule(
 ) {
   // --- Public Endpoints (No Token Required) ---
 
-  async function oauth(body: OAuthDto): Promise<OauthResponseDto> {
+  async function oauth(
+    body: OAuthDto,
+  ): Promise<OauthResponseDto | { requiresStrongAuth: boolean }> {
     const response = await requestAuth("/v1/auth/oauth", "POST", body);
     return response.json();
   }

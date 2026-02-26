@@ -26,6 +26,7 @@ export function useQueryGetMe(enabled: boolean = true) {
     setUser({
       ...user,
       ...data,
+      nextStep: data.nextStep || user?.nextStep,
       trustedDevices: user?.trustedDevices || [],
     });
   }, [data]);

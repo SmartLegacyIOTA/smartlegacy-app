@@ -15,10 +15,12 @@ import { GuardianCard } from "./components/guardian-card";
 import { ActivityItem } from "./components/activity-item";
 
 import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
+import { useAuth } from "@/src/framework/providers/auth";
 
 const Home = () => {
   const theme = useTheme();
   const { t } = useI18nService();
+  const { user } = useAuth();
   const {
     handleNotificationPress,
     handleManageGuardian,
@@ -64,8 +66,8 @@ const Home = () => {
 
         {/* Header */}
         <HeaderSection
-          userName="John Doe"
-          userInitials="JD"
+          userName={user?.name || ""}
+          userInitials={""}
           onNotificationPress={handleNotificationPress}
         />
 

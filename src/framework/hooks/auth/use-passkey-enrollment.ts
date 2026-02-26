@@ -1,6 +1,6 @@
 import {
   RNPasskeyProvider,
-  saveStoredPasskey,
+  addStoredPasskey,
 } from "@/src/framework/libs/rn-passkey";
 import { useMyApi } from "@/src/framework/api/api-provider";
 import { useAuth } from "@/src/framework/providers/auth";
@@ -64,12 +64,10 @@ export const usePasskeyEnrollment = () => {
       });
       const response = await api.auth().verifyRegister(mappedBody);
 
-      // 4. Guardar credentialId localmente
-      await saveStoredPasskey({
-        credentialIdB64u: attestation.rawId,
-        pub33B64: pkB64u,
-      });
-
+      // 4. Guardar credentialId localmente sin sobreescribir las anteriores
+      await addStoredPasskey(attestation.rawId, pkB64u);
+      console.log("response", response.user);
+      console.log("response", response.user.nextStep);
       if (response.user) {
         setUser({
           ...response.user,

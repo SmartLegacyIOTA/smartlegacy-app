@@ -43,6 +43,7 @@ export function HeaderSection({
             variant="label"
             color="slText"
             style={{ fontSize: 16, fontWeight: "600" }}
+            numberOfLines={1}
           >
             {userName}
           </SharedText>
@@ -81,6 +82,7 @@ const styles = StyleSheet.create({
   },
   greeting: {
     gap: 2,
+    maxWidth: "75%",
   },
   notifBtn: {
     width: 40,

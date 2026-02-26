@@ -88,22 +88,13 @@ const Login = () => {
         </View>
 
         {/* Features */}
-        <View style={styles.features}>
-          <FeatureCard
-            iconName="face-recognition"
-            iconColor={theme.colors.slAccent}
-            iconBgColor={theme.colors.slAccentLight}
-            title={t("login.featureIdentityTitle")}
-            description={t("login.featureIdentityDesc")}
-          />
-          <FeatureCard
-            iconName="account-group"
-            iconColor={theme.colors.slPositive}
-            iconBgColor={theme.colors.slPositiveLight}
-            title={t("login.featureInheritanceTitle")}
-            description={t("login.featureInheritanceDesc")}
-          />
-        </View>
+        <FeatureCard
+          iconName="face-recognition"
+          iconColor={theme.colors.slAccent}
+          iconBgColor={theme.colors.slAccentLight}
+          title={t("login.featureIdentityTitle")}
+          description={t("login.featureIdentityDesc")}
+        />
       </View>
 
       {/* Bottom Section */}
@@ -117,12 +108,12 @@ const Login = () => {
             leftIcon={{
               type: "icon",
               config: {
-                name: "face-recognition",
+                name: "account-key",
                 variant: "material-community",
                 color: theme.colors.white,
               },
             }}
-            style={{ height: 52, marginBottom: 12 }}
+            style={{ height: 52, marginBottom: 30 }}
           >
             {t("login.continueWithPasskey")}
           </SharedButton>
