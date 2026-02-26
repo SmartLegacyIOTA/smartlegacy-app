@@ -1,16 +1,40 @@
 import { useAuth } from "@/src/framework/providers/auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMutationOAuth } from "@/src/framework/api/rq/auth/post-oauth";
 import { useGoogleLogin } from "@/src/framework/social-auth/use-google-login";
 import { logger } from "@/src/framework/utils/logger/logger";
+import {
+  loadStoredPasskey,
+  RNPasskeyProvider,
+} from "@/src/framework/libs/rn-passkey";
+import { useMyApi } from "@/src/framework/api/api-provider";
+import { toBackendAuthVerifyDto } from "@/src/framework/api/types/auth-types";
+import { toastError } from "@/src/framework/lib/toast/toast";
+import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
+
+const log = logger.scope("LOGIN");
 
 export const useLogin = () => {
+  const { t } = useI18nService();
+
   const { signIn, setUser } = useAuth();
   const { mutateAsync: googleLoginMutate } = useMutationOAuth();
   const { googleSignIn } = useGoogleLogin();
+  const api = useMyApi();
 
   const [loadingGoogle, setLoadingGoogle] = useState(false);
   const [loadingApple, setLoadingApple] = useState(false);
+  const [loadingPasskey, setLoadingPasskey] = useState(false);
+  const [hasStoredPasskey, setHasStoredPasskey] = useState(false);
+
+  useEffect(() => {
+    checkStoredPasskey();
+  }, []);
+
+  const checkStoredPasskey = async () => {
+    const stored = await loadStoredPasskey();
+    setHasStoredPasskey(!!stored);
+  };
 
   const handleGoogleLogin = async () => {
     try {
@@ -24,19 +48,70 @@ export const useLogin = () => {
           idToken: idToken,
         });
 
-        if (response.accessToken && response.user) {
-          logger
-            .scope("LOGIN")
-            .debug("OAuth success", { userId: response.user.id });
+        if (response.accessToken && response.nextStep) {
+          log.debug("OAuth success", { nextStep: response.nextStep });
           signIn(response.accessToken);
           setUser({
-            ...response.user,
+            ...response,
             trustedDevices: [],
           });
         }
       }
     } finally {
       setLoadingGoogle(false);
+    }
+  };
+
+  const handlePasskeyLogin = async () => {
+    try {
+      setLoadingPasskey(true);
+      const stored = await loadStoredPasskey();
+      log.debug("Stored passkey loaded", { hasStored: !!stored });
+
+      if (!stored) {
+        log.info("No stored credentials, redirecting to sign-in");
+        toastError(t("login.passkeyLoginError"));
+        return;
+      }
+
+      const challengeData = await api.auth().getAuthOptions();
+
+      const provider = new RNPasskeyProvider();
+
+      // 2. Ejecutar Passkey Get
+      const assertion = await provider.get({
+        rpId: challengeData.rpId,
+        challengeB64u: challengeData.challenge,
+        allowCredentialIdsB64u: undefined,
+      });
+
+      // 3. Verificar en backend
+      const mappedBody = toBackendAuthVerifyDto({
+        challengeId: challengeData.challengeId,
+        assertion,
+      });
+
+      const response = await api.auth().verifyAuth(mappedBody);
+
+      if (response.accessToken && response.user) {
+        log.info("VerifyAuth success", {
+          userId: response.user.id,
+          isNew: response.isNew,
+        });
+        signIn(response.accessToken);
+        setUser({
+          ...response.user,
+          trustedDevices: [],
+          nextStep: "APP",
+        });
+      }
+    } catch (error: any) {
+      log.error("Login passkey error", {
+        message: error?.message,
+      });
+      toastError(t("login.passkeyLoginError"));
+    } finally {
+      setLoadingPasskey(false);
     }
   };
 
@@ -47,8 +122,11 @@ export const useLogin = () => {
 
   return {
     onGoogle: handleGoogleLogin,
+    onPasskey: handlePasskeyLogin,
     onApple,
     loadingGoogle,
     loadingApple,
+    loadingPasskey,
+    hasStoredPasskey,
   };
 };

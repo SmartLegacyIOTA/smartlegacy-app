@@ -103,10 +103,6 @@ const RootNavigator = () => {
 
           <Stack.Protected guard={shouldShowBootstrap}>
             <Stack.Screen
-              name="onboarding/auth-bootstrap"
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
               name="onboarding/sign-in"
               options={{ headerShown: false }}
             />

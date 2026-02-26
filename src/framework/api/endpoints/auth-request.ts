@@ -3,9 +3,8 @@ import {
   AuthResponseDto,
   BackendAuthVerifyDto,
   BackendRegisterVerifyDto,
-  GoogleLoginDto,
   OAuthDto,
-  RegisterDidDto,
+  OauthResponseDto,
   UserDto,
   WebAuthnChallengeDto,
   WebAuthnRegisterOptionsDto,
@@ -17,18 +16,8 @@ export function getAuthModule(
 ) {
   // --- Public Endpoints (No Token Required) ---
 
-  async function oauth(body: OAuthDto): Promise<AuthResponseDto> {
+  async function oauth(body: OAuthDto): Promise<OauthResponseDto> {
     const response = await requestAuth("/v1/auth/oauth", "POST", body);
-    return response.json();
-  }
-
-  async function register(body: RegisterDidDto): Promise<AuthResponseDto> {
-    const response = await requestAuth("/v1/auth/register", "POST", body);
-    return response.json();
-  }
-
-  async function login(body: GoogleLoginDto): Promise<AuthResponseDto> {
-    const response = await requestAuth("/v1/auth/login", "POST", body);
     return response.json();
   }
 
@@ -87,8 +76,6 @@ export function getAuthModule(
   return {
     // Public
     oauth,
-    register,
-    login,
     getAuthOptions,
     verifyAuth,
     // Private

@@ -16,6 +16,10 @@ export interface UserDto {
   updatedAt: string;
 }
 
+export interface OauthResponseDto extends UserDto {
+  accessToken: string;
+}
+
 export interface AuthResponseDto {
   accessToken: string;
   user: UserDto;
@@ -146,17 +150,5 @@ export function toBackendRegisterVerifyDto(args: {
 }
 
 export interface OAuthDto {
-  idToken: string;
-}
-
-export interface RegisterDidDto {
-  idToken: string;
-  publicKey: string;
-  iotaAddress: string;
-  signature: string;
-  challenge: string;
-}
-
-export interface GoogleLoginDto {
   idToken: string;
 }

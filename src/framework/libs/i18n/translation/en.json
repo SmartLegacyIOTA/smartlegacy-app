@@ -29,7 +29,9 @@
     "or": "or",
     "termsAndPrivacy": "By continuing, you agree to our Terms and Privacy Policy",
     "error": "Login failed. Please try again.",
-    "bootstrapError": "Automatic login failed. Please sign in to continue."
+    "passkeyLoginError": "Failed to sign in with Passkey. Make sure you have an account on this device.",
+    "bootstrapError": "Automatic login failed. Please sign in to continue.",
+    "continueWithPasskey": "Continue with Passkey"
   },
   "home": {
     "screenTitle": "Home",

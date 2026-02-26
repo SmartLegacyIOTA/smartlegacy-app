@@ -29,7 +29,9 @@
     "or": "o",
     "termsAndPrivacy": "Al continuar, aceptas nuestros Términos y Política de Privacidad",
     "error": "El inicio de sesión ha fallado. Por favor, inténtalo de nuevo.",
-    "bootstrapError": "Error al iniciar sesión automáticamente. Identifícate para continuar."
+    "passkeyLoginError": "Error al iniciar sesión con Passkey. Asegúrate de tener una cuenta en este dispositivo.",
+    "bootstrapError": "Error al iniciar sesión automáticamente. Identifícate para continuar.",
+    "continueWithPasskey": "Continuar con Passkey"
   },
   "home": {
     "screenTitle": "Inicio",

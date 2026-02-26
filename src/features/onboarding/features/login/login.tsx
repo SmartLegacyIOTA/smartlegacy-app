@@ -12,7 +12,15 @@ import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
 const Login = () => {
   const { t } = useI18nService();
 
-  const { onApple, onGoogle, loadingGoogle, loadingApple } = useLogin();
+  const {
+    onApple,
+    onGoogle,
+    onPasskey,
+    loadingGoogle,
+    loadingApple,
+    loadingPasskey,
+    hasStoredPasskey,
+  } = useLogin();
   const theme = useTheme();
   const { bottom, top } = useSafeAreaInsets();
 
@@ -100,11 +108,31 @@ const Login = () => {
 
       {/* Bottom Section */}
       <View style={styles.bottomSection}>
+        {hasStoredPasskey && (
+          <SharedButton
+            variant="primary"
+            onPress={onPasskey}
+            loading={loadingPasskey}
+            disabled={loadingGoogle || loadingApple}
+            leftIcon={{
+              type: "icon",
+              config: {
+                name: "face-recognition",
+                variant: "material-community",
+                color: theme.colors.white,
+              },
+            }}
+            style={{ height: 52, marginBottom: 12 }}
+          >
+            {t("login.continueWithPasskey")}
+          </SharedButton>
+        )}
+
         <SharedButton
           variant="secondary"
           onPress={onGoogle}
           loading={loadingGoogle}
-          disabled={loadingApple}
+          disabled={loadingApple || loadingPasskey}
           leftIcon={renderGoogleIcon()}
           style={{ height: 52 }}
         >
