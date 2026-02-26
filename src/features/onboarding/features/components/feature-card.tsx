@@ -49,6 +49,7 @@ export function FeatureCard({
           variant="caption"
           color="slTextMuted"
           style={{ fontSize: 13 }}
+          numberOfLines={1}
         >
           {description}
         </SharedText>

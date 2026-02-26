@@ -2,15 +2,12 @@ import React from "react";
 import { Image, Platform, StyleSheet, View } from "react-native";
 import { useLogin } from "@/src/features/onboarding/features/login/hooks/use-login";
 import * as AppleAuthentication from "expo-apple-authentication";
-
 import { SharedButton } from "@/src/components/shared/shared-button";
-import { Icon } from "@/src/components/ui/icon";
 import { SharedText } from "@/src/components/shared/shared-text";
 import { FeatureCard } from "@/src/features/onboarding/features/components/feature-card";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTheme } from "@/src/framework/theme/use-theme";
 import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
-import { APP_NAME } from "@/src/constants/app";
 
 const Login = () => {
   const { t } = useI18nService();
@@ -38,8 +35,8 @@ const Login = () => {
             android: Math.max(bottom, 24),
           }),
           paddingTop: Platform.select({
-            ios: Math.max(top, 24),
-            android: Math.max(top, 24),
+            ios: Math.max(top, 24) + 30,
+            android: Math.max(top, 24) + 30,
           }),
         },
       ]}
@@ -48,26 +45,11 @@ const Login = () => {
       <View style={styles.topSection}>
         {/* Logo Area */}
         <View style={styles.logoArea}>
-          <View
-            style={[
-              styles.logoIcon,
-              { backgroundColor: theme.colors.slAccent },
-            ]}
-          >
-            <Icon
-              variant={"material-community"}
-              name={"shield-check"}
-              size={40}
-              color={theme.colors.white}
-            />
-          </View>
-          <SharedText
-            variant="h1"
-            color="slText"
-            style={{ fontSize: 28, letterSpacing: -0.5 }}
-          >
-            {APP_NAME}
-          </SharedText>
+          <Image
+            source={require("@/assets/app/smart-lecy-icon.png")}
+            style={styles.logoIcon}
+            resizeMode="contain"
+          />
           <SharedText
             variant="subtitle"
             color="slTextSecondary"
@@ -199,15 +181,12 @@ const styles = StyleSheet.create({
   },
   logoArea: {
     alignItems: "center",
-    gap: 24,
+    gap: 15,
     width: "100%",
   },
   logoIcon: {
     width: 80,
     height: 80,
-    borderRadius: 20,
-    alignItems: "center",
-    justifyContent: "center",
   },
   valueProps: {
     gap: 12,
