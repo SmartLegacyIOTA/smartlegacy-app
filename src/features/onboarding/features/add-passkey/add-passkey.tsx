@@ -5,13 +5,13 @@ import { useI18nService } from "@/src/framework/libs/i18n/i18n-service";
 import { SharedButton } from "@/src/components/shared/shared-button";
 import { FeatureCard } from "@/src/features/onboarding/features/components/feature-card";
 import { IntroSection } from "@/src/components/intro-section";
-import { usePasskeyEnrollment } from "@/src/framework/hooks/auth/use-passkey-enrollment";
+import { useCreatePasskey } from "@/src/framework/hooks/auth/use-create-passkey";
 
 const AddPasskey = () => {
   const { t } = useI18nService();
   const theme = useTheme();
 
-  const { enrollPasskey, isEnrollLoading } = usePasskeyEnrollment();
+  const { enrollPasskey, isEnrollLoading } = useCreatePasskey();
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.slBg }]}>

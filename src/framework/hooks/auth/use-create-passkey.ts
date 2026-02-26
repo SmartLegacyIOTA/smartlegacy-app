@@ -19,7 +19,7 @@ import {
 
 const log = logger.scope("PASSKEY");
 
-export const usePasskeyEnrollment = () => {
+export const useCreatePasskey = () => {
   const api = useMyApi();
   const { setUser } = useAuth();
   const { t } = useI18nService();
