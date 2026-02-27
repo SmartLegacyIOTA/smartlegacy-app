@@ -1,12 +1,9 @@
 import { useAuth } from "@/src/framework/providers/auth";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useMutationOAuth } from "@/src/framework/api/rq/auth/post-oauth";
 import { useGoogleLogin } from "@/src/framework/social-auth/use-google-login";
 import { logger } from "@/src/framework/utils/logger/logger";
-import {
-  loadStoredPasskey,
-  RNPasskeyProvider,
-} from "@/src/framework/libs/rn-passkey";
+import { RNPasskeyProvider } from "@/src/framework/libs/rn-passkey";
 import { useMyApi } from "@/src/framework/api/api-provider";
 import { toBackendAuthVerifyDto } from "@/src/framework/api/types/auth-types";
 import { toastError } from "@/src/framework/lib/toast/toast";
@@ -25,16 +22,6 @@ export const useLogin = () => {
   const [loadingGoogle, setLoadingGoogle] = useState(false);
   const [loadingApple, setLoadingApple] = useState(false);
   const [loadingPasskey, setLoadingPasskey] = useState(false);
-  const [hasStoredPasskey, setHasStoredPasskey] = useState(false);
-
-  useEffect(() => {
-    checkStoredPasskey();
-  }, []);
-
-  const checkStoredPasskey = async () => {
-    const stored = await loadStoredPasskey();
-    setHasStoredPasskey(!!stored?.credentialIdsB64u.length);
-  };
 
   const handleGoogleLogin = async () => {
     try {
@@ -72,14 +59,6 @@ export const useLogin = () => {
   const handlePasskeyLogin = async () => {
     try {
       setLoadingPasskey(true);
-      const stored = await loadStoredPasskey();
-      log.debug("Stored passkey loaded", { hasStored: !!stored });
-
-      if (!stored?.credentialIdsB64u.length) {
-        log.info("No stored credentials, redirecting to sign-in");
-        toastError(t("login.passkeyLoginError"));
-        return;
-      }
 
       const challengeData = await api.auth().getAuthOptions();
 
@@ -133,6 +112,5 @@ export const useLogin = () => {
     loadingGoogle,
     loadingApple,
     loadingPasskey,
-    hasStoredPasskey,
   };
 };

@@ -19,7 +19,6 @@ const Login = () => {
     loadingGoogle,
     loadingApple,
     loadingPasskey,
-    hasStoredPasskey,
   } = useLogin();
   const theme = useTheme();
   const { bottom, top } = useSafeAreaInsets();
@@ -99,25 +98,23 @@ const Login = () => {
 
       {/* Bottom Section */}
       <View style={styles.bottomSection}>
-        {hasStoredPasskey && (
-          <SharedButton
-            variant="primary"
-            onPress={onPasskey}
-            loading={loadingPasskey}
-            disabled={loadingGoogle || loadingApple}
-            leftIcon={{
-              type: "icon",
-              config: {
-                name: "account-key",
-                variant: "material-community",
-                color: theme.colors.white,
-              },
-            }}
-            style={{ height: 52, marginBottom: 30 }}
-          >
-            {t("login.continueWithPasskey")}
-          </SharedButton>
-        )}
+        <SharedButton
+          variant="primary"
+          onPress={onPasskey}
+          loading={loadingPasskey}
+          disabled={loadingGoogle || loadingApple}
+          leftIcon={{
+            type: "icon",
+            config: {
+              name: "account-key",
+              variant: "material-community",
+              color: theme.colors.white,
+            },
+          }}
+          style={{ height: 52, marginBottom: 30 }}
+        >
+          {t("login.continueWithPasskey")}
+        </SharedButton>
 
         <SharedButton
           variant="secondary"
